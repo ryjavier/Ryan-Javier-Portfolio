@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chinese Ceramics Guide - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+      --accent: var(--orange);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--orange); }
+
+    /* ── SUBWAY SIGN BAR ── */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    /* Orange dot for this project */
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HERO IMAGE ── */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #e8e0d8;
+    }
+    .cs-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── META + ABOUT ROW ── */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+
+    /* ── SECTION HEADING with extending line ── */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── BODY TEXT ── */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* ── INSIGHT PULL QUOTE ── */
+    .cs-insight {
+      border-left: 3px solid var(--orange);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(247,148,29,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── RESEARCH PAIR: image one side, text the other ── */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .cs-research-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .cs-research-desc {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── PDF EMBED ── */
+    .cs-pdf-embed {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      margin: 28px 0;
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .cs-pdf-embed iframe {
+      width: 100%;
+      height: 640px;
+      display: block;
+      border: none;
+    }
+
+    /* ── BACK LINK ── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { flex-direction: row; flex-wrap: wrap; gap: 16px 28px; }
+      .cs-meta-item { min-width: 80px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-pdf-embed iframe { height: 420px; }
+    }
+
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#ideation"       class="nav-link" data-section="ideation">Ideation</a>
+        <a href="#sketching"      class="nav-link" data-section="sketching">Sketching</a>
+        <a href="#final-design"   class="nav-link" data-section="final-design">Final Design</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="../index.html#work"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
+        </div>
+        <div class="case-nav-arrows">
+          <a href="#">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">Chinese Ceramics Guide</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">← Back to Work</a>
+
+    <!-- HERO - final PDF cover spread -->
+    <div class="cs-hero">
+      <img src="../photos/ChineseCeramicsCase/thumbnailChinese.png"
+           alt="Chinese Ceramics Looking Guide - Color, Culture and Chemistry"
+           class="cs-zoomable" />
+    </div>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Graphic Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Client</span>
+          <span class="cs-meta-value">Lehigh University Art Galleries</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Adobe InDesign<br>Illustrator</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Publication<br>Brochure Design</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>The Lehigh University Art Galleries commissioned a museum-grade looking guide for their Spring 2026 exhibition <em>Color, Culture and Chemistry: Kiln and Glaze Technology in Chinese Ceramics</em>. The brief was to create an accessible, visually compelling self-guided tour for K–12 visitors - one that balanced scholarly content with engaging design and interactive looking prompts. The process moved from competitive research and moodboarding through hand sketching to a fully realized printed publication.</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         01 - IDEATION / MOODBOARD
+    ══════════════════════════════ -->
+    <div class="cs-section-heading" id="ideation">
+      <h2>01 - Ideation &amp; Moodboard</h2>
+    </div>
+
+    <p class="cs-body-text">Before touching layout software, the process started with competitive analysis - collecting existing museum looking guides from institutions including MoMA, the Saint Louis Art Museum, and smaller gallery programs. Key patterns emerged: alternating accent colors, generous negative space, zoomed close-up cutouts, activity boxes, and accessible typography. These became the guiding design principles.</p>
+
+    <!-- Moodboard: full width -->
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/ChineseCeramicsCase/chineseCaseMoodboard.png"
+             alt="Moodboard - competitive analysis of museum looking guides"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Moodboard - competitive audit of museum K–12 looking guides</p>
+    </div>
+
+    <div class="cs-insight">
+      <p>Across every reference, two patterns stood out: strong alternating color fields that create visual rhythm, and "A Closer Look" zoomed-in cutouts that reward careful observation.</p>
+    </div>
+
+    <p class="cs-body-text">From the moodboard, a set of design decisions crystallized: two main alternating colors (warm brown and cream), Chinese character dynasty labels as typographic anchors, transparent-background object photography, and "Looking Prompts" as the primary interactive device. The guide needed to feel both educational and genuinely beautiful - something a visitor would want to hold onto after the exhibition.</p>
+
+    <!-- ══════════════════════════════
+         02 - SKETCHING
+    ══════════════════════════════ -->
+    <div class="cs-section-heading" id="sketching">
+      <h2>02 - Sketching</h2>
+    </div>
+
+    <p class="cs-body-text">With the design language defined, the next step was mapping the full publication layout through hand sketching. Each panel of the folded brochure was roughed out: the cover with a large ceramic object and vertical "Looking Guide" spine text, the table of contents spread, and the individual artifact pages - each following a consistent front/back structure with the artifact large, "A Closer Look" cutouts on the right column, and Looking Prompts anchoring the bottom.</p>
+
+    <!-- Sketches: image left, text right -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/ChineseCeramicsCase/ChineseCaseSkecthes.JPG"
+             alt="Hand sketches - brochure layout thumbnails"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Thumbnail Sketches</span>
+        <p class="cs-research-title">Mapping every panel before opening InDesign</p>
+        <p class="cs-research-desc">Sixteen thumbnail sketches mapped the front cover, inside spreads, and back cover - including alternate cover compositions, dynasty character placement, and multiple artifact page structures. Key decisions made at this stage: a vertical "Looking Guide" label on the cover spine, the "A Closer Look" column running along the right edge of odd pages, and the LUAG logo anchoring the bottom left of the front and back covers.</p>
+        <p class="cs-research-desc" style="margin-top:8px;">Font candidates were also identified during sketching: Trade Gothic Next was selected for its balance of editorial authority and readability at small sizes.</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════
+         03 - FINAL DESIGN
+    ══════════════════════════════ -->
+    <div class="cs-section-heading" id="final-design">
+      <h2>03 - Final Design</h2>
+    </div>
+
+    <p class="cs-body-text">The final publication is an 8-panel folded brochure structured around three thematic sections - Early Decoration, Colored Glazes, and Influences of Trade - each anchored to a specific Chinese dynasty. Every spread pairs a large artifact photograph with dynasty typography in Chinese characters, "A Closer Look" close-up cutouts, and Looking Prompts designed to encourage observation rather than test knowledge. The warm brown and cream palette creates a cohesive visual identity that references the earth and glaze tones of the ceramics themselves.</p>
+
+    <!-- PDF embed -->
+    <div class="cs-pdf-embed">
+      <iframe
+        src="../photos/ChineseCeramicsCase/ChineseCeramicsLookingGuide.pdf"
+        title="Chinese Ceramics Looking Guide - Color, Culture and Chemistry">
+      </iframe>
+    </div>
+    <p class="cs-img-caption">Full publication - Color, Culture and Chemistry: Kiln and Glaze Technology in Chinese Ceramics · Spring 2026 · Lehigh University Art Galleries</p>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['ideation', 'sketching', 'final-design'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
