@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ryan Javier's Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="photos/favicon.ico" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section id="hero">
+    <div class="flipboard-wrapper">
+      <div class="flipboard" id="flipboard-name">
+        <div class="flip-row" id="flip-name">
+          </div>
+      </div>
+      <div class="flipboard tagline-board" id="flipboard-tagline">
+        <div class="flip-row" id="flip-tagline-1"></div>
+        <div class="flip-row" id="flip-tagline-2"></div>
+      </div>
+    </div>
+    <div class="departures-label">
+      <span>DEPARTURES BELOW</span>
+      <a href="#about" class="bounce-arrow" id="bounceArrow" aria-label="Scroll to About section">↓</a>
+    </div>
+  </section>
+  <nav id="navbar" class="navbar hidden">
+    <div class="nav-inner">
+      <span class="nav-logo">RYAN JAVIER</span>
+      <div class="nav-links">
+        <a href="#about" class="nav-link" data-section="about">ABOUT</a>
+        <a href="#work" class="nav-link active" data-section="work">WORK</a>
+        <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+      </div>
+    </div>
+  </nav>
+  <section id="about">
+    <div class="section-card">
+      <div class="section-header teal">
+        <h2>ABOUT</h2>
+      </div>
+      <div class="about-body">
+        <div class="about-left">
+          <h3>Three disciplines,<br><strong>One Perspective.</strong></h3>
+          <p>I'm a senior studying Computer Science, Graphic Design, and Global Studies, three fields that most people see as separate. I see them as the same practice viewed from different angles: understanding systems, understanding people, and making the complex feel simple.</p>
+          <p>Currently seeking Product Design internships where I can bring technical depth and creative thinking to teams solving real problems.</p>
+          <a class="see-resume" href="#">SEE RESUME</a>
+        </div>
+        <div class="about-divider"></div>
+        <div class="about-right">
+          <div class="info-row"><span class="label">NAME</span><span>Ryan Javier</span></div>
+          <div class="info-row"><span class="label">FOCUS</span><span>Product Design • UI/UX • Graphic Design</span></div>
+          <div class="info-row"><span class="label">EDUCATION</span><span>B.S. Interdisciplinary Studies (Computer Science & Graphic Design)<br>B.A. Global Studies</span></div>
+          <div class="info-row"><span class="label">TOOLS</span><span>Figma • Illustrator • React • HTML • CSS • JS</span></div>
+          <div class="info-row"><span class="label">CURRENTLY</span><span>Seeking Product Designer Roles</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="work">
+    <div class="section-card work-card">
+      <div class="section-header teal">
+        <h2>WORK</h2>
+      </div>
+
+      <!-- Legend -->
+      <div class="timeline-legend">
+        <p class="legend-label">LEGEND</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <div class="legend-item"><span class="legend-line red-legend"></span><span>RED LINE: UI/UX</span></div>
+          <div class="legend-item"><span class="legend-line orange-legend"></span><span>ORANGE LINE: GRAPHIC DESIGN</span></div>
+          <div class="legend-item"><span class="legend-line blue-legend"></span><span>BLUE LINE</span></div>
+          <div class="legend-item"><span class="legend-line green-legend"></span><span>GREEN LINE</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-section">
+
+        <!-- Decorative background lines (behind red/orange) -->
+        <svg class="timeline-bg-svg" aria-hidden="true"
+             viewBox="0 0 100 100" preserveAspectRatio="none">
+          <!-- Blue: enters from left, turns 90° down, exits right -->
+          <polyline class="timeline-bg-line timeline-bg-blue"
+                    points="0,22 38,22 38,62 100,62" />
+          <!-- Green: enters from right, turns 90° down, exits left -->
+          <polyline class="timeline-bg-line timeline-bg-green"
+                    points="100,16 62,16 62,82 0,82" />
+        </svg>
+
+        <!-- Blue line ghost stops (no corners) -->
+        <div class="bg-stop bg-stop-blue" style="top:22%;left:10%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:22%;left:22%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:22%;left:34%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:34%;left:50%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:46%;left:50%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:56%;left:50%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:62%;left:54%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:62%;left:70%"></div>
+        <div class="bg-stop bg-stop-blue" style="top:62%;left:84%"></div>
+
+        <!-- Green line ghost stops (no corners) -->
+        <div class="bg-stop bg-stop-green" style="top:16%;left:88%"></div>
+        <div class="bg-stop bg-stop-green" style="top:16%;left:76%"></div>
+        <div class="bg-stop bg-stop-green" style="top:16%;left:66%"></div>
+        <div class="bg-stop bg-stop-green" style="top:28%;left:50%"></div>
+        <div class="bg-stop bg-stop-green" style="top:40%;left:50%"></div>
+        <div class="bg-stop bg-stop-green" style="top:52%;left:50%"></div>
+        <div class="bg-stop bg-stop-green" style="top:64%;left:50%"></div>
+        <div class="bg-stop bg-stop-green" style="top:74%;left:50%"></div>
+        <div class="bg-stop bg-stop-green" style="top:82%;left:48%"></div>
+        <div class="bg-stop bg-stop-green" style="top:82%;left:32%"></div>
+        <div class="bg-stop bg-stop-green" style="top:82%;left:16%"></div>
+
+        <!-- ═══════════════ RED LINE ═══════════════ -->
+        <div class="timeline-group" id="red-line-group">
+          <div class="timeline-line red"></div>
+
+          <!-- Stop 1: Course Registration - image LEFT, text RIGHT -->
+          <div class="timeline-stop clickable" data-work="course-registration">
+            <div class="timeline-card-left">
+              <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                <img src="photos/courseRegistration/BigScheduleUICL01+CV01UISelected.png"
+                     alt="Course Registration"
+                     style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:10px;" />
+              </div>
+            </div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-title">Course Registration</div>
+              <div class="timeline-tag">Case Study</div>
+            </div>
+          </div>
+
+          <!-- Stop 2: Lingua - text LEFT, image RIGHT -->
+          <div class="timeline-stop clickable" data-work="lingua">
+            <div class="timeline-card-left">
+              <div class="timeline-title">Lingua</div>
+              <div class="timeline-tag">Case Study</div>
+            </div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-thumb"></div>
+            </div>
+          </div>
+
+          <!-- Stop 3: Auroworld - image LEFT, text RIGHT -->
+          <div class="timeline-stop clickable" data-work="auroworld">
+            <div class="timeline-card-left">
+              <div class="timeline-thumb"></div>
+            </div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-title">Auroworld</div>
+              <div class="timeline-tag">Brand Identity</div>
+            </div>
+          </div>
+
+          <!-- Stop 4: Aptatio Analytics - text LEFT, image RIGHT -->
+          <div class="timeline-stop clickable" data-work="aptatic-analytics">
+            <div class="timeline-card-left">
+              <div class="timeline-title">Aptatio Analytics</div>
+              <div class="timeline-tag">Usability Testing</div>
+            </div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-thumb"></div>
+            </div>
+          </div>
+
+          <!-- Stop 5: Capstone Website - image LEFT, text RIGHT -->
+          <a href="pages/capstone-website.html" class="timeline-stop-link">
+            <div class="timeline-stop clickable">
+              <div class="timeline-card-left">
+                <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                  <img src="photos/CapstoneWebsite/Thumbnail sketch.png"
+                       alt="Capstone Website"
+                       style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:10px;" />
+                </div>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-card-right">
+                <div class="timeline-title">Capstone Website</div>
+                <div class="timeline-tag">Website Redesign</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Stop 6: AISHA - text LEFT, image RIGHT -->
+          <a href="pages/aisha.html" class="timeline-stop-link">
+            <div class="timeline-stop clickable">
+              <div class="timeline-card-left">
+                <div class="timeline-title">AISHA</div>
+                <div class="timeline-tag">Healthcare Dashboard</div>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot"></div>
+              </div>
+              <div class="timeline-card-right">
+                <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                  <img src="photos/AISHA/1756594130944.jpeg"
+                       alt="AISHA"
+                       style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:10px;" />
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Under Construction - terminus dot at end of Red line -->
+          <div class="timeline-terminus">
+            <div></div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot construction"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-construction-label">Under Construction</div>
+            </div>
+          </div>
+
+        </div><!-- /red-line-group -->
+
+        <!-- ═══════════════ ORANGE LINE ═══════════════ -->
+        <div class="timeline-group" id="orange-line-group" style="margin-top:64px;">
+          <div class="timeline-line orange"></div>
+
+          <!-- Stop 1: Card Redesign - image LEFT, text RIGHT -->
+          <a href="pages/card-redesign.html" class="timeline-stop-link">
+            <div class="timeline-stop clickable orange-stop">
+              <div class="timeline-card-left">
+                <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                  <img src="photos/CardRedesign/thumbnail.jpg"
+                       alt="Card Redesign"
+                       style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:10px;" />
+                </div>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot orange"></div>
+              </div>
+              <div class="timeline-card-right">
+                <div class="timeline-title">Card Redesign</div>
+                <div class="timeline-tag">Product Design, Packaging</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Stop 2: Chinese Ceramics - text LEFT, image RIGHT -->
+          <div class="timeline-stop clickable orange-stop" data-work="chinese-ceramics">
+            <div class="timeline-card-left">
+              <div class="timeline-title">Chinese Ceramics Guide</div>
+              <div class="timeline-tag">Publication, Brochure</div>
+            </div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot orange"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                <img src="photos/ChineseCeramicsCase/thumbnailChinese.png"
+                     alt="Chinese Ceramics Guide"
+                     style="width:100%;height:100%;object-fit:cover;object-position:top left;display:block;border-radius:10px;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Stop 3: Work. Home. Escape. - image LEFT, text RIGHT -->
+          <a href="pages/work-home-escape.html" class="timeline-stop-link">
+            <div class="timeline-stop clickable orange-stop">
+              <div class="timeline-card-left">
+                <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                  <img src="photos/Work. Home. Escape./WorkHomeEscapeMockup.jpg"
+                       alt="Work. Home. Escape."
+                       style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:10px;" />
+                </div>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot orange"></div>
+              </div>
+              <div class="timeline-card-right">
+                <div class="timeline-title">Work. Home. Escape.</div>
+                <div class="timeline-tag">Poster, Illustration</div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Stop 4: Information Design - text LEFT, image RIGHT -->
+          <a href="pages/info-design.html" class="timeline-stop-link">
+            <div class="timeline-stop clickable orange-stop">
+              <div class="timeline-card-left">
+                <div class="timeline-title">Information Design</div>
+                <div class="timeline-tag">Infographic, Poster</div>
+              </div>
+              <div class="timeline-dot-col">
+                <div class="timeline-dot orange"></div>
+              </div>
+              <div class="timeline-card-right">
+                <div class="timeline-thumb" style="background:none;overflow:hidden;">
+                  <img src="photos/InfoDesign/InfoDesign.jpg"
+                       alt="Information Design"
+                       style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:10px;" />
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Under Construction - terminus dot at end of Orange line -->
+          <div class="timeline-terminus">
+            <div></div>
+            <div class="timeline-dot-col">
+              <div class="timeline-dot orange construction"></div>
+            </div>
+            <div class="timeline-card-right">
+              <div class="timeline-construction-label">Under Construction</div>
+            </div>
+          </div>
+
+        </div><!-- /orange-line-group -->
+
+      </div><!-- /timeline-section -->
+    </div>
+  </section>
+
+   <!-- ===== CONTACT ===== -->
+   <section id="contact">
+    <div class="contact-inner">
+      <p class="end-of-line">END OF THE LINE</p>
+      <h2>Let's connect.</h2>
+      <p class="contact-sub">I'm always open to conversations about design, technology, and the spaces where they overlap. If you're working on something interesting or looking for a designer who builds, I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:ryanjaviericus@gmail.com">✉ ryanjaviericus@gmail.com</a>
+        <a href="https://www.linkedin.com/in/ryan-javiericus/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/flipboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
