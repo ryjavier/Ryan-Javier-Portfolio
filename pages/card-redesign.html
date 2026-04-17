@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Card Redesign - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--orange); }
+
+    /* SUBWAY SIGN BAR */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* MAIN CONTENT */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* HERO IMAGE */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #e8e0d8;
+    }
+    .cs-hero img { width: 100%; height: auto; display: block; }
+
+    /* META + ABOUT ROW */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+
+    /* SECTION HEADING */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* BODY TEXT */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* INSIGHT PULL QUOTE */
+    .cs-insight {
+      border-left: 3px solid var(--orange);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(247,148,29,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* RESEARCH PAIR */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img { width: 100%; height: auto; display: block; }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .cs-research-title { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+    .cs-research-desc { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+    /* LO-FI PAIR */
+    .cs-lofi-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 28px 0;
+    }
+    .cs-lofi-images { display: flex; flex-direction: column; gap: 12px; }
+    .cs-lofi-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      flex: 1;
+      min-width: 0;
+    }
+    .cs-lofi-box img { width: 100%; height: auto; display: block; object-position: top center; }
+    .cs-lofi-text { display: flex; flex-direction: column; gap: 10px; }
+
+    /* FULL-WIDTH IMAGE */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* STAT CARDS */
+    .cs-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-stat-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cs-stat-number { font-size: 36px; font-weight: 700; color: var(--orange); line-height: 1; }
+    .cs-stat-label { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+    /* FUTURE IMPROVEMENTS LIST */
+    .cs-improvement-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-improvement-item {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cs-improvement-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .cs-improvement-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    /* BACK LINK */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { flex-direction: row; flex-wrap: wrap; gap: 16px 28px; }
+      .cs-meta-item { min-width: 80px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-lofi-pair { grid-template-columns: 1fr; }
+      .cs-stats-row { grid-template-columns: 1fr; }
+    }
+
+    /* CLICKABLE IMAGES */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* IMAGE LIGHTBOX MODAL */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#sketches"     class="nav-link" data-section="sketches">Sketches</a>
+        <a href="#prototyping"  class="nav-link" data-section="prototyping">Prototyping</a>
+        <a href="#final-design" class="nav-link" data-section="final-design">Final Design</a>
+        <a href="#future"       class="nav-link" data-section="future">Future</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="../index.html#work"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
+        </div>
+        <div class="case-nav-arrows">
+          <a href="#">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">Card Redesign</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/CardRedesign/thumbnail.jpg"
+           alt="Card Redesign overview"
+           class="cs-zoomable" />
+    </div>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Product Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Medium</span>
+          <span class="cs-meta-value">Laser Engraved<br>Birch Wood</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Adobe Illustrator<br>Trotec Laser Cutter</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Product Design<br>Packaging</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>Cho Dai Dee, known in English as Big Deuce, is a classic Chinese card game played across generations. This project takes that foundation and rebuilds the deck from scratch, replacing standard suits with imagery drawn from a modern Asian American childhood. Bubble tea, Kumon workbooks, and other everyday objects replace the traditional iconography, while the card structure and visual language pull from vintage Chinese playing card design. The result is a game that feels both familiar and new, grounded in cultural memory but filtered through a personal lens.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         01 - SKETCHES
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="sketches">
+      <h2>01 - Sketches</h2>
+    </div>
+
+    <p class="cs-body-text">The first round of sketches explored how to adapt the traditional suit tiles of Cho Dai Dee into a new visual system. Two directions were explored simultaneously: one set reimagining the animal and direction tiles with detailed character illustrations, and another rethinking the numbered Wan tiles with illustrated objects from Asian American daily life.</p>
+
+    <!-- Two sketch sets side by side -->
+    <div class="cs-lofi-pair">
+      <div class="cs-lofi-images">
+        <div class="cs-lofi-box">
+          <img src="../photos/CardRedesign/InitialSketches.jpg"
+               alt="Initial card sketches exploring animal and direction tiles"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <div class="cs-lofi-text">
+        <span class="cs-research-label">First Iteration</span>
+        <p class="cs-research-title">Animal and direction tiles with Chinese characters</p>
+        <p class="cs-research-desc">The first pass explored a more literal adaptation, keeping the zodiac animals and cardinal direction tiles but redrawing them with more detailed illustration. Chinese characters were integrated directly into the card face to reinforce the cultural reference. While the direction was compelling, the tile system felt too close to the original game and left less room to introduce the personal imagery that drove the concept.</p>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>The pivot came from asking a simpler question: what images would a first-generation Asian American actually recognize on a card? The answer was everyday, not mythological.</p>
+    </div>
+
+    <!-- Settled direction -->
+    <div class="cs-research-pair flip">
+      <div class="cs-research-img">
+        <img src="../photos/CardRedesign/sketches.jpg"
+             alt="Final sketch direction with Wan tiles and modern Asian American imagery"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Settled Direction</span>
+        <p class="cs-research-title">Wan tiles redrawn around modern Asian American objects</p>
+        <p class="cs-research-desc">The final sketch direction focused on the numbered Wan tile structure, with each card featuring an illustrated object from modern Asian American life: bubble tea, a Vita soy milk carton, a Kumon workbook, and others. The vintage Chinese card format, with its stacked layout and character labels, was retained as the structural reference, giving the new imagery a familiar visual frame.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         02 - PROTOTYPING
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="prototyping">
+      <h2>02 - Prototyping</h2>
+    </div>
+
+    <p class="cs-body-text">Before committing to the final material, a working prototype was built in Adobe Illustrator to test the card layout at scale and verify that the game logic held up under real play conditions. The goal was to catch any structural or readability issues before production.</p>
+
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/CardRedesign/WorkingPrototype.JPG"
+             alt="Working Illustrator prototype of the card deck"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Working Prototype</span>
+        <p class="cs-research-title">Built in Illustrator, tested at the table</p>
+        <p class="cs-research-desc">The full deck was laid out in Adobe Illustrator and printed as a paper prototype. The cards were then used for actual playtesting sessions of Cho Dai Dee with the new imagery in place. This round of testing confirmed that the suit hierarchy translated clearly to the new objects, and that the card values were readable during fast play. Minor spacing and sizing adjustments were made based on how the cards felt held in hand.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         03 - FINAL DESIGN
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="final-design">
+      <h2>03 - Final Design</h2>
+    </div>
+
+    <p class="cs-body-text">With the prototype validated, the deck was taken to production using the Trotec laser cutter in the Lehigh design lab. Each card was engraved onto birch wood sheets, translating the Illustrator artwork into a physical object with a texture and weight that matched the tactile nature of the game.</p>
+
+    <!-- Wood engraving process -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/CardRedesign/cards.jpg"
+             alt="Finished laser engraved birch wood cards fanned out"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Production</span>
+        <p class="cs-research-title">Laser engraved on birch wood with the Trotec cutter</p>
+        <p class="cs-research-desc">The Illustrator files were sent directly to the Trotec laser cutter, which engraved each card face into birch wood sheets. The wood grain added a texture that complemented the vintage card aesthetic without requiring additional finishing. Cards were then individually cut and sanded to a consistent size.</p>
+      </div>
+    </div>
+
+    <!-- Packaging -->
+    <div class="cs-research-pair flip">
+      <div class="cs-research-img">
+        <img src="../photos/CardRedesign/packaging.jpg"
+             alt="Finished deck, branding, and chipboard box packaging"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Packaging</span>
+        <p class="cs-research-title">Printed branding and chipboard box with rulebook</p>
+        <p class="cs-research-desc">A custom chipboard box was constructed to house the finished deck alongside a printed rulebook. The branding and labeling were printed separately and applied to the box faces, creating a complete packaged product. The rulebook walks players through the rules of Cho Dai Dee adapted for the new deck, including the updated suit hierarchy and any rule modifications introduced during playtesting.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         04 - FUTURE IMPROVEMENTS
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="future">
+      <h2>04 - Future Improvements</h2>
+    </div>
+
+    <p class="cs-body-text">The current deck is a strong first version, but two areas stand out as the most impactful next steps for a refined edition.</p>
+
+    <div class="cs-improvement-list">
+      <div class="cs-improvement-item">
+        <p class="cs-improvement-title">Branding consistency between the cards and the packaging</p>
+        <p class="cs-improvement-desc">The current box is printed on paper stock and feels noticeably different from the hand-feel of the engraved wood cards. A next version would bring the packaging closer to the cards materially and visually, using laser-engraved wood or chipboard with a burned finish so the box reads as part of the same object rather than a commercial wrapper around it. The goal is for someone picking up the box to feel like it was made by the same hands that made the deck.</p>
+      </div>
+      <div class="cs-improvement-item">
+        <p class="cs-improvement-title">Color on the cards for readability and play experience</p>
+        <p class="cs-improvement-desc">The engraved wood finish looks intentional but makes it harder to distinguish suits quickly during play. Adding color, whether through paint fill, laser-scored color inlay, or a printed card version, would make the suit system immediately legible at a glance. Color also opens up the opportunity to lean further into the cultural references, using palette choices that echo the objects and their contexts rather than a uniform natural wood tone.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['sketches', 'prototyping', 'final-design', 'future'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
