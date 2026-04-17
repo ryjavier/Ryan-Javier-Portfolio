@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Work. Home. Escape. - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--orange); }
+
+    /* SUBWAY SIGN BAR */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* MAIN CONTENT */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* HERO IMAGE */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #c8d8a8;
+    }
+    .cs-hero img { width: 100%; height: auto; display: block; }
+
+    /* META + ABOUT ROW */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+
+    /* SECTION HEADING */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* BODY TEXT */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* POSTER PAIR */
+    .cs-poster-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 32px 0 28px;
+    }
+    .cs-poster-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-poster-box img { width: 100%; height: auto; display: block; }
+
+    /* INSIGHT PULL QUOTE */
+    .cs-insight {
+      border-left: 3px solid var(--orange);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(247,148,29,0.05);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* BACK LINK */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { flex-direction: row; flex-wrap: wrap; gap: 16px 28px; }
+      .cs-meta-item { min-width: 80px; }
+      .cs-poster-pair { grid-template-columns: 1fr; }
+    }
+
+    /* CLICKABLE IMAGES */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* IMAGE LIGHTBOX MODAL */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#the-series" class="nav-link" data-section="the-series">The Series</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="../index.html#work"><span class="case-nav-arrow-icon">&#8592;</span> Back to Work</a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">Work. Home. Escape.</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/Work. Home. Escape./WorkHomeEscapeMockup.jpg"
+           alt="Work. Home. Escape. posters displayed outdoors"
+           class="cs-zoomable" />
+    </div>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Adobe Illustrator</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Poster, Illustration</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>These two posters were created as a series with a single premise: use word and image together to persuade. The design is intentionally versatile, built so the city name and color palette can shift while the structure stays intact. The same poster works for Los Angeles, New York, or anywhere else a transit system runs.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         01 - THE SERIES
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="the-series">
+      <h2>01 - The Series</h2>
+    </div>
+
+    <div class="cs-poster-pair">
+      <div class="cs-poster-box">
+        <img src="../photos/Work. Home. Escape./Trains.png"
+             alt="Work. Home. Escape. Los Angeles poster"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-poster-box">
+        <img src="../photos/Work. Home. Escape./Trains2.png"
+             alt="Work. Home. Escape. New York poster"
+             class="cs-zoomable" />
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>Trains can take you to work, to home, and to escape. The poster makes that argument visually before the reader finishes the headline.</p>
+    </div>
+
+    <p class="cs-body-text">The series draws from the visual language of Green New Deal posters and mid-20th century transit propaganda, both of which used bold illustration to make public infrastructure feel exciting rather than utilitarian. The three words of the headline do the conceptual work: work, home, and escape represent the full range of where a train can take you, and together they make the case that public transit is not a last resort but a genuine choice. The bright, saturated colors are deliberate. They signal optimism and a future worth wanting. The gradients across the sky and buildings reference the sunset imagery common in futuristic illustration from the 1940s and 50s, when the idea of a technological future still felt like a promise. Each city gets its own palette but the same structure, so the series reads as unified while still feeling specific to place.</p>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['the-series'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
