@@ -113,22 +113,39 @@ function setTileFinal(wrap, ch) {
 }
 
 function runFlipboard() {
-  const nameRow = document.getElementById('flip-name');
-  const tag1Row = document.getElementById('flip-tagline-1');
-  const tag2Row = document.getElementById('flip-tagline-2');
-  const tag3Row = document.getElementById('flip-tagline-3');
+  const nameRow  = document.getElementById('flip-name');
+  const name2Row = document.getElementById('flip-name-2');
+  const tag1Row  = document.getElementById('flip-tagline-1');
+  const tag2Row  = document.getElementById('flip-tagline-2');
+  const tag3Row  = document.getElementById('flip-tagline-3');
   if (!nameRow) return;
 
-  // "NOT JUST THE DESTINATION" is ~829px wide at 1×. Use a 3-line split on any
-  // screen narrower than 900px so the text fits without clipping.
-  const isMobile = window.innerWidth <= 900;
-  const t2Text   = isMobile ? 'NOT JUST THE'      : 'NOT JUST THE DESTINATION';
-  const t3Text   = isMobile ? 'DESTINATION'        : null;
+  // Two layout tiers:
+  //   mobile (≤640px) — name splits to 2 rows; tagline uses 3-line split
+  //   web    (>640px) — name stays 1 row;      tagline uses 2-line split
+  const isMobile = window.innerWidth <= 640;
 
-  const nameTiles = buildRow(nameRow, 'RYAN JAVIER');
-  const t1Tiles   = buildRow(tag1Row, 'DESIGNING THE RIDE,');
-  const t2Tiles   = buildRow(tag2Row, t2Text);
-  const t3Tiles   = t3Text ? buildRow(tag3Row, t3Text) : [];
+  // Name
+  const nameText  = isMobile ? 'RYAN'   : 'RYAN JAVIER';
+  const name2Text = isMobile ? 'JAVIER' : null;
+
+  // Tagline
+  let t1Text, t2Text, t3Text;
+  if (isMobile) {
+    t1Text = 'DESIGNING THE';
+    t2Text = 'RIDE, NOT JUST';
+    t3Text = 'THE DESTINATION';
+  } else {
+    t1Text = 'DESIGNING THE RIDE,';
+    t2Text = 'NOT JUST THE DESTINATION';
+    t3Text = null;
+  }
+
+  const nameTiles  = buildRow(nameRow,  nameText);
+  const name2Tiles = name2Text ? buildRow(name2Row, name2Text) : [];
+  const t1Tiles    = buildRow(tag1Row, t1Text);
+  const t2Tiles    = buildRow(tag2Row, t2Text);
+  const t3Tiles    = t3Text ? buildRow(tag3Row, t3Text) : [];
 
   // Only animate on first load (hard refresh or direct visit).
   // When navigating back from a case study page, show the final text immediately.
@@ -136,16 +153,21 @@ function runFlipboard() {
 
   if (hasVisited) {
     // Already seen this session — show final state instantly, no animation
-    nameTiles.forEach(({ tile, ch }) => setTileFinal(tile, ch));
-    t1Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
-    t2Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
-    t3Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
+    nameTiles.forEach(({ tile, ch })  => setTileFinal(tile, ch));
+    name2Tiles.forEach(({ tile, ch }) => setTileFinal(tile, ch));
+    t1Tiles.forEach(({ tile, ch })    => setTileFinal(tile, ch));
+    t2Tiles.forEach(({ tile, ch })    => setTileFinal(tile, ch));
+    t3Tiles.forEach(({ tile, ch })    => setTileFinal(tile, ch));
   } else {
     // First visit this session — run the full animation, then mark as seen
     sessionStorage.setItem('flipboard_seen', '1');
-    nameTiles.forEach(({ tile, ch }, i) => animateTile(tile, ch, 150 + i * 90));
 
-    const afterName = 150 + nameTiles.length * 90 + 400;
+    // Both name rows animate simultaneously for a full-board effect
+    nameTiles.forEach(({ tile, ch }, i)  => animateTile(tile, ch, 150 + i * 90));
+    name2Tiles.forEach(({ tile, ch }, i) => animateTile(tile, ch, 150 + i * 90));
+
+    // Tagline starts after the longest name row finishes
+    const afterName = 150 + Math.max(nameTiles.length, name2Tiles.length) * 90 + 400;
     t1Tiles.forEach(({ tile, ch }, i) => animateTile(tile, ch, afterName + i * 55));
 
     const afterT1 = afterName + t1Tiles.length * 55 + 220;

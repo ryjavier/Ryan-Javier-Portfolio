@@ -895,16 +895,16 @@
      RESPONSIVE — MOBILE
   =========================== */
 
-  /* Hide 3rd tagline row on wide desktops (>900px use 2-line layout) */
+  /* Hide rows that only appear on mobile */
   #flip-tagline-3 { display: none; }
+  #flip-name-2    { display: none; }
 
-  /* ── Medium screens (641px–900px): switch to 3-line + gentle zoom ──
-     The 2-line tagline is ~829px wide; 3-line widest row is ~670px.
-     zoom 0.88 → ~589px, fits inside 641px − 48px padding = 593px. */
+  /* ── Medium screens (641px–900px): 2-line web layout with zoom to fit ──
+     "NOT JUST THE DESTINATION" is ~829px wide at 1×.
+     zoom 0.72 → ~597px, fits inside 641px − 48px padding = 593px (±2px). */
   @media (min-width: 641px) and (max-width: 900px) {
     #hero { overflow: hidden; }
-    .flipboard-wrapper { zoom: 0.88; }
-    #flip-tagline-3 { display: flex; }
+    .flipboard-wrapper { zoom: 0.72; }
   }
 
   /* ── Tablet / Large phone (≤640px) ── */
@@ -915,12 +915,16 @@
     /* Hero: clip overflow from scaled flipboard */
     #hero { overflow: hidden; }
 
-    /* With the 3-line tagline split, the widest row is "DESIGNING THE RIDE," at ~670px.
-       zoom 0.88 → ~589px, fits inside 640px - 32px = 608px available. */
+    /* Mobile layout: widest row is "THE DESTINATION" at ~547px.
+       zoom 0.88 → ~481px, comfortably inside 640px - 32px = 608px available. */
     .flipboard-wrapper { zoom: 0.88; }
 
-    /* Show the 3rd tagline row (JS populates it as "DESTINATION" on mobile) */
+    /* Show mobile-only flipboard rows */
     #flip-tagline-3 { display: flex; }
+    #flip-name-2    { display: flex; }
+
+    /* Center both name rows on mobile */
+    #flipboard-name .flip-row { justify-content: center; }
 
     /* Navbar */
     .nav-inner { padding: 10px 16px; }
@@ -1008,15 +1012,16 @@
 
   /* ── Phone (≤480px) ── */
   @media (max-width: 480px) {
-    /* zoom 0.65 → ~436px, fits inside 480px - 32px = 448px available */
-    .flipboard-wrapper { zoom: 0.65; }
+    /* New mobile layout widest row is ~547px.
+       zoom 0.80 → ~438px, fits inside 480px - 32px = 448px available. */
+    .flipboard-wrapper { zoom: 0.80; }
     .about-left h3 { font-size: 22px; }
     .nav-links { gap: 16px; }
   }
 
   /* ── Small phone (≤390px) ── */
   @media (max-width: 390px) {
-    /* zoom 0.52 → ~348px, fits inside 390px - 32px = 358px available */
-    .flipboard-wrapper { zoom: 0.52; }
+    /* zoom 0.65 → ~356px, fits inside 390px - 32px = 358px available. */
+    .flipboard-wrapper { zoom: 0.65; }
     .nav-logo { font-size: 11px; }
   }
