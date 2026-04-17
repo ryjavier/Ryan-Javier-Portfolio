@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Capstone Website - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--red); }
+
+    /* ── SUBWAY SIGN BAR ── */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HERO IMAGE ── */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #e8e0d8;
+    }
+    .cs-hero img { width: 100%; height: auto; display: block; }
+
+    /* ── META + ABOUT ROW ── */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+
+    /* ── SECTION HEADING with extending line ── */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── BODY TEXT ── */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* ── INSIGHT PULL QUOTE ── */
+    .cs-insight {
+      border-left: 3px solid var(--red);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(237,28,36,0.04);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── RESEARCH PAIR: image one side, text the other ── */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img { width: 100%; height: auto; display: block; }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .cs-research-title { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+    .cs-research-desc { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+    /* ── LO-FI PAIR: two images side by side left, text right ── */
+    .cs-lofi-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 28px 0;
+    }
+    .cs-lofi-images { display: flex; flex-direction: column; gap: 12px; }
+    .cs-lofi-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      flex: 1;
+      min-width: 0;
+    }
+    .cs-lofi-box img { width: 100%; height: auto; display: block; object-position: top center; }
+    .cs-lofi-text { display: flex; flex-direction: column; gap: 10px; }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── STAT CARDS ── */
+    .cs-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-stat-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cs-stat-number { font-size: 36px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .cs-stat-label { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+    /* ── OLD SITE HORIZONTAL SCROLL ── */
+    .cs-scroll-wrap {
+      margin: 28px -24px;
+      padding: 0 24px 0;
+      overflow: hidden;
+    }
+    .cs-scroll-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+    }
+    .cs-scroll-track::-webkit-scrollbar { height: 4px; }
+    .cs-scroll-track::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+    .cs-scroll-track::-webkit-scrollbar-thumb { background: #bbb; border-radius: 2px; }
+    .cs-scroll-card {
+      flex: 0 0 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scroll-snap-align: start;
+    }
+    .cs-scroll-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+      height: 420px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .cs-scroll-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: top center;
+      display: block;
+    }
+    .cs-scroll-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cs-scroll-page {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .cs-scroll-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.35;
+    }
+    .cs-scroll-desc {
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+
+    /* ── BACK LINK ── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { flex-direction: row; flex-wrap: wrap; gap: 16px 28px; }
+      .cs-meta-item { min-width: 80px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-lofi-pair { grid-template-columns: 1fr; }
+      .cs-stats-row { grid-template-columns: 1fr; }
+      .cs-scroll-card { flex: 0 0 260px; }
+    }
+
+    /* ── CLICKABLE IMAGES ── */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* ── IMAGE LIGHTBOX MODAL ── */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#old-site"      class="nav-link" data-section="old-site">Old Site</a>
+        <a href="#wireframes"    class="nav-link" data-section="wireframes">Wireframes</a>
+        <a href="#final-design"  class="nav-link" data-section="final-design">Final Design</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="../index.html#work"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
+        </div>
+        <div class="case-nav-arrows">
+          <a href="#">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">Capstone Website</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/CapstoneWebsite/Thumbnail sketch.png"
+           alt="Capstone Website redesign mockup on MacBook"
+           class="cs-zoomable" />
+    </div>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">UI/UX Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Client</span>
+          <span class="cs-meta-value">Lehigh University<br>CS &amp; Engineering Dept.</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Tools</span>
+          <span class="cs-meta-value">Figma</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Website Redesign<br>UI/UX Design</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>The Lehigh University Computer Science Capstone website serves students, faculty, and sponsors navigating the senior capstone program. The existing site had accumulated years of structural debt: inconsistent navigation, buried project content, and a visual identity that didn't reflect the program's scope. This project set out to redesign it from the ground up, improving discoverability and presenting the work students produce with the clarity it deserves.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         01 - OLD SITE
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="old-site">
+      <h2>01 - Old Site</h2>
+    </div>
+
+    <p class="cs-body-text">The original site at lehighcomputersciencecapstone.com carried the right content but presented it in a way that made navigation unintuitive. Scroll through the pages below to see the specific friction points that drove the redesign.</p>
+
+    <div class="cs-scroll-wrap">
+      <div class="cs-scroll-track">
+
+        <!-- Card 1: Home -->
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_index.html.png"
+                 alt="Old landing page"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Home</p>
+            <p class="cs-scroll-title">Faculty hidden behind individual click-through cards</p>
+            <p class="cs-scroll-desc">Each faculty member was tucked behind its own card that required a separate click to expand. Users who wanted to browse the full faculty list had to click through every card individually, a slow and tedious process that obscured basic information that should have been visible at a glance.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Past Projects -->
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_past_projects.html.png"
+                 alt="Old past projects page"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Past Projects</p>
+            <p class="cs-scroll-title">Plain links with no context, no way to browse</p>
+            <p class="cs-scroll-desc">Projects appear as bare hyperlinks grouped loosely by year. There are no descriptions, no sponsor names, and no project categories, so a visitor has no idea what any project involved until they click through. With no search or filter controls, finding something relevant means scrolling through years of undifferentiated entries.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Sponsors -->
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_sponsor.html.png"
+                 alt="Old sponsor page"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Sponsors</p>
+            <p class="cs-scroll-title">Hidden accordion with no visual affordance</p>
+            <p class="cs-scroll-desc">The FAQ section below the sponsor pitch is technically interactive, but nothing signals that. There is no chevron, no button, and no hover change, so the collapsed headings look identical to static text. Users who don't already know to click them will never discover the content inside.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: Students -->
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_student.html.png"
+                 alt="Old student page"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Students</p>
+            <p class="cs-scroll-title">A structural copy of the sponsor page</p>
+            <p class="cs-scroll-desc">The Students and Sponsors pages use the same layout, the same content density, and nearly the same language. A visitor switching between them would struggle to identify what applies to them. Most of the student-facing information could live on the homepage or in a single consolidated About section, eliminating the redundancy entirely.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>The site had the right information but none of the right structure. The redesign opportunity was less about what to say and entirely about how to organize and present it.</p>
+    </div>
+
+    <!-- ════════════════════════
+         02 - WIREFRAMES
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="wireframes">
+      <h2>02 - Wireframes</h2>
+    </div>
+
+    <p class="cs-body-text">Before moving into Figma, the layout was mapped through thumbnail sketches to establish the information architecture. Key decisions made at this stage: a persistent top navigation separating About, Projects, Sponsors, and FAQs; a hero section leading with program identity; and a card-based grid for projects to enable browsing and filtering.</p>
+
+    <!-- Wireframe sketch -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/CapstoneWebsite/WIreframeSketch.png"
+             alt="Wireframe sketches for capstone website"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Thumbnail Sketches</span>
+        <p class="cs-research-title">Mapping structure before touching the screen</p>
+        <p class="cs-research-desc">Rough layouts established the page hierarchy across all four main sections. The most critical decision was surfacing the Projects page as the primary destination, since that's the content most visitors are seeking.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         03 - FINAL DESIGN
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="final-design">
+      <h2>03 - Final Design</h2>
+    </div>
+
+    <p class="cs-body-text">Every screen in the redesign traces back to a specific friction point from the old site. The decisions below are organized by the problem they solve.</p>
+
+    <!-- Fix 1: LandingPage + ProjectsButton + Faculty stacked left, text right -->
+    <div class="cs-lofi-pair">
+      <div class="cs-lofi-images">
+        <div class="cs-lofi-box">
+          <img src="../photos/CapstoneWebsite/LandingPage.png"
+               alt="Redesigned landing page"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-lofi-box">
+          <img src="../photos/CapstoneWebsite/ProjectsButton.png"
+               alt="Projects CTA button on landing page"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-lofi-box">
+          <img src="../photos/CapstoneWebsite/Faculty.png"
+               alt="Redesigned faculty section showing all members inline"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <div class="cs-lofi-text">
+        <span class="cs-research-label">Fixes · Home Page</span>
+        <p class="cs-research-title">A landing page that orients, then directs</p>
+
+        <p class="cs-research-desc" style="margin-top:14px;"><strong>Hero image</strong><br>
+        The homepage opens with a full campus photo, matching the visual tone visitors already expect from academic department sites. It establishes the program's identity before they read a single word.</p>
+
+        <p class="cs-research-desc" style="margin-top:12px;"><strong>Quick access buttons</strong><br>
+        Prominent buttons sit directly below the hero so any visitor, whether a student, sponsor, or recruiter, can jump straight to the content they came for without scrolling through the page first.</p>
+
+        <p class="cs-research-desc" style="margin-top:12px;"><strong>Faculty section</strong><br>
+        All faculty names, titles, and contact details are now displayed as a plain visible list. The old site tucked each person behind a card that required its own click to open, turning a simple browse into a repetitive multi-step task.</p>
+      </div>
+    </div>
+
+    <!-- Fix 2: Projects page → plain links with no context -->
+    <div class="cs-research-pair flip">
+      <div class="cs-research-img">
+        <img src="../photos/CapstoneWebsite/ProjectsSearch.png"
+             alt="Project search and filter in use"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Fixes · Past Projects</span>
+        <p class="cs-research-title">Card grid with metadata replaces bare link lists</p>
+        <p class="cs-research-desc">Each project now appears as a card showing the team name, sponsor, year, and project category. A visitor can tell at a glance whether a project is relevant to them, with no clicking required. The page also introduces search and filter controls so users can narrow the archive by sponsor, topic, or year without scrolling through everything.</p>
+      </div>
+    </div>
+
+    <!-- Projects page full width -->
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/CapstoneWebsite/ProjectsPage.png"
+             alt="Redesigned projects page"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Each project card surfaces team name, sponsor, year, and CSE area at a glance</p>
+    </div>
+
+    <!-- Fix 3: FAQs → hidden accordion -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/CapstoneWebsite/FAQs.png"
+             alt="Redesigned FAQs page"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Fixes · Sponsors &amp; FAQs</span>
+        <p class="cs-research-title">Visible affordance makes the accordion discoverable</p>
+        <p class="cs-research-desc">Every accordion item now carries a chevron that rotates on expand, giving users a clear visual signal that more content is inside. The sponsor pitch and the FAQ list are separated into distinct sections so users can find what they came for without reading through content aimed at a different audience. Contact details are pulled to the top rather than buried at the bottom.</p>
+      </div>
+    </div>
+
+    <!-- Fix 4: Students/Sponsors mirror problem — text only -->
+    <div class="cs-insight">
+      <p><strong>Fixes · Students &amp; Sponsors</strong><br>The two pages were structural twins, so the fix was architectural rather than visual. Student-relevant content, including program requirements, timeline, and team formation, was consolidated into the homepage About section where it reaches the right audience without needing its own page. The Sponsors page was then scoped entirely to the industry pitch and partnership details, giving each audience a destination that feels written specifically for them.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="cs-stats-row">
+      <div class="cs-stat-card">
+        <span class="cs-stat-number">4</span>
+        <span class="cs-stat-label">pain points directly addressed with specific design decisions</span>
+      </div>
+      <div class="cs-stat-card">
+        <span class="cs-stat-number">1</span>
+        <span class="cs-stat-label">unified visual language replacing years of inconsistent additions</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['old-site', 'wireframes', 'final-design'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+
+</body>
+</html>
