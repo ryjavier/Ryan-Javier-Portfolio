@@ -892,14 +892,131 @@
   .meta-value { font-size: 13px; color: var(--dark); }
   
   /* ===========================
-     RESPONSIVE
+     RESPONSIVE — MOBILE
   =========================== */
+
+  /* Hide 3rd tagline row on wide desktops (>900px use 2-line layout) */
+  #flip-tagline-3 { display: none; }
+
+  /* ── Medium screens (641px–900px): switch to 3-line + gentle zoom ──
+     The 2-line tagline is ~829px wide; 3-line widest row is ~670px.
+     zoom 0.88 → ~589px, fits inside 641px − 48px padding = 593px. */
+  @media (min-width: 641px) and (max-width: 900px) {
+    #hero { overflow: hidden; }
+    .flipboard-wrapper { zoom: 0.88; }
+    #flip-tagline-3 { display: flex; }
+  }
+
+  /* ── Tablet / Large phone (≤640px) ── */
   @media (max-width: 640px) {
-    .about-body { grid-template-columns: 1fr; gap: 24px; }
+    /* General spacing */
+    section { padding: 40px 16px; }
+
+    /* Hero: clip overflow from scaled flipboard */
+    #hero { overflow: hidden; }
+
+    /* With the 3-line tagline split, the widest row is "DESIGNING THE RIDE," at ~670px.
+       zoom 0.88 → ~589px, fits inside 640px - 32px = 608px available. */
+    .flipboard-wrapper { zoom: 0.88; }
+
+    /* Show the 3rd tagline row (JS populates it as "DESTINATION" on mobile) */
+    #flip-tagline-3 { display: flex; }
+
+    /* Navbar */
+    .nav-inner { padding: 10px 16px; }
+    .nav-links  { gap: 20px; }
+
+    /* About: stack columns vertically */
+    .about-body { grid-template-columns: 1fr; }
     .about-divider { display: none; }
-    .map-legend { gap: 12px; }
-    .flip-tile  { width: 30px; height: 42px; }
-    .flip-tile span { font-size: 18px; }
-    .tagline-board .flip-tile { width: 20px; height: 28px; }
-    .tagline-board .flip-tile span { font-size: 12px; }
+    .about-left  { padding: 20px 20px 8px; }
+    .about-right { padding: 8px 20px 24px; }
+
+    /* Work: hide purely decorative bg lines / ghost stops */
+    .timeline-bg-svg,
+    .bg-stop { display: none; }
+
+    /* Timeline group padding */
+    .timeline-legend { padding: 16px 16px 0; }
+    .timeline-group  { padding: 0 16px; }
+    #orange-line-group { margin-top: 40px !important; }
+
+    /* Shift the colored line to the left rail (dot center = 16px padding + 24px = 40px) */
+    .timeline-line {
+      left: 40px;
+      transform: translateX(-50%);
+      width: 8px;
+    }
+
+    /* Convert 3-col (card | dot | card) → 2-col (dot | card) */
+    .timeline-stop,
+    .timeline-terminus {
+      grid-template-columns: 48px 1fr;
+      padding: 24px 0;
+      row-gap: 12px;
+    }
+
+    /* Dot column: left rail, spans all content rows */
+    .timeline-dot-col {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      justify-content: flex-start;
+      padding-top: 2px;
+    }
+
+    /* Left card → top content slot by default */
+    .timeline-card-left {
+      grid-column: 2;
+      grid-row: 1;
+      align-items: flex-start;
+      padding-right: 0;
+      padding-left: 16px;
+    }
+
+    /* Right card → bottom content slot by default */
+    .timeline-card-right {
+      grid-column: 2;
+      grid-row: 2;
+      padding-left: 16px;
+      padding-right: 0;
+    }
+
+    /* Title always above thumbnail:
+       When the LEFT card holds a real image, swap rows so the right card
+       (which holds the title) moves to row 1 and the image drops to row 2. */
+    .timeline-card-left:has(.timeline-thumb:not(:empty)) { grid-row: 2; }
+    .timeline-stop:has(.timeline-card-left .timeline-thumb:not(:empty)) .timeline-card-right { grid-row: 1; }
+
+    /* Force terminus label into row 1 alongside the dot */
+    .timeline-terminus .timeline-card-right { grid-row: 1; }
+
+    /* Force left alignment on cards that were right-aligned */
+    .timeline-card-left .timeline-title,
+    .timeline-card-left .timeline-tag,
+    .timeline-card-left .timeline-construction-label { text-align: left; }
+
+    /* Thumbnails: stretch to fill the right column */
+    .timeline-thumb { max-width: 100%; }
+
+    /* Hide empty grey placeholder thumbs (no children) */
+    .timeline-thumb:empty { display: none; }
+
+    /* Contact */
+    .contact-inner h2 { font-size: 30px; }
+    .contact-links { flex-direction: column; gap: 12px; }
+  }
+
+  /* ── Phone (≤480px) ── */
+  @media (max-width: 480px) {
+    /* zoom 0.65 → ~436px, fits inside 480px - 32px = 448px available */
+    .flipboard-wrapper { zoom: 0.65; }
+    .about-left h3 { font-size: 22px; }
+    .nav-links { gap: 16px; }
+  }
+
+  /* ── Small phone (≤390px) ── */
+  @media (max-width: 390px) {
+    /* zoom 0.52 → ~348px, fits inside 390px - 32px = 358px available */
+    .flipboard-wrapper { zoom: 0.52; }
+    .nav-logo { font-size: 11px; }
   }

@@ -116,11 +116,19 @@ function runFlipboard() {
   const nameRow = document.getElementById('flip-name');
   const tag1Row = document.getElementById('flip-tagline-1');
   const tag2Row = document.getElementById('flip-tagline-2');
+  const tag3Row = document.getElementById('flip-tagline-3');
   if (!nameRow) return;
+
+  // "NOT JUST THE DESTINATION" is ~829px wide at 1×. Use a 3-line split on any
+  // screen narrower than 900px so the text fits without clipping.
+  const isMobile = window.innerWidth <= 900;
+  const t2Text   = isMobile ? 'NOT JUST THE'      : 'NOT JUST THE DESTINATION';
+  const t3Text   = isMobile ? 'DESTINATION'        : null;
 
   const nameTiles = buildRow(nameRow, 'RYAN JAVIER');
   const t1Tiles   = buildRow(tag1Row, 'DESIGNING THE RIDE,');
-  const t2Tiles   = buildRow(tag2Row, 'NOT JUST THE ROUTE');
+  const t2Tiles   = buildRow(tag2Row, t2Text);
+  const t3Tiles   = t3Text ? buildRow(tag3Row, t3Text) : [];
 
   // Only animate on first load (hard refresh or direct visit).
   // When navigating back from a case study page, show the final text immediately.
@@ -131,6 +139,7 @@ function runFlipboard() {
     nameTiles.forEach(({ tile, ch }) => setTileFinal(tile, ch));
     t1Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
     t2Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
+    t3Tiles.forEach(({ tile, ch })   => setTileFinal(tile, ch));
   } else {
     // First visit this session — run the full animation, then mark as seen
     sessionStorage.setItem('flipboard_seen', '1');
@@ -141,6 +150,9 @@ function runFlipboard() {
 
     const afterT1 = afterName + t1Tiles.length * 55 + 220;
     t2Tiles.forEach(({ tile, ch }, i) => animateTile(tile, ch, afterT1 + i * 55));
+
+    const afterT2 = afterT1 + t2Tiles.length * 55 + 220;
+    t3Tiles.forEach(({ tile, ch }, i) => animateTile(tile, ch, afterT2 + i * 55));
   }
 }
 

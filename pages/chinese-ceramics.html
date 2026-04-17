@@ -340,13 +340,51 @@
     }
     .cs-back:hover { color: var(--teal); }
 
+    /* HAMBURGER MENU */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .navbar:not(:has(.nav-link)) .nav-hamburger { display: none !important; }
+
     @media (max-width: 640px) {
       .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
-      .cs-meta { flex-direction: row; flex-wrap: wrap; gap: 16px 28px; }
-      .cs-meta-item { min-width: 80px; }
+      .cs-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
       .cs-research-pair,
       .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
       .cs-pdf-embed iframe { height: 420px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 4px 0;
+        z-index: 99;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 24px; }
     }
 
     .cs-zoomable {
@@ -428,6 +466,9 @@
         <a href="#sketching"      class="nav-link" data-section="sketching">Sketching</a>
         <a href="#final-design"   class="nav-link" data-section="final-design">Final Design</a>
       </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -604,6 +645,28 @@
     modalClose.addEventListener('click', closeLightbox);
     modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Hamburger menu
+    const burger  = document.getElementById('navHamburger');
+    const navMenu = document.querySelector('.nav-links');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+      });
+      navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        }
+      });
+    }
   </script>
 
 </body>
