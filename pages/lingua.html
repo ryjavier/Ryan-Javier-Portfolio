@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LINGUA - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--red); }
+
+    /* ── SUBWAY SIGN BAR ── */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HERO ── */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #1b3d2f;
+    }
+    .cs-hero img { width: 100%; height: auto; display: block; }
+
+    /* ── META + ABOUT ROW ── */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+    .cs-page-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
+
+    /* ── BACK LINK ── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    /* ── SECTION HEADING with extending line ── */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── SUBSECTION HEADING ── */
+    .cs-sub-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+      margin-top: 36px;
+    }
+
+    /* ── BODY TEXT ── */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* ── INSIGHT PULL QUOTE ── */
+    .cs-insight {
+      border-left: 3px solid var(--red);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(237,28,36,0.04);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── RESEARCH PAIR: image one side, text the other ── */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img { width: 100%; height: auto; display: block; }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .cs-research-title { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+    .cs-research-desc { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── QUOTE CARDS ── */
+    .cs-quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .cs-quote-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 24px 22px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+      border-left: 3px solid var(--red);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .cs-quote-card p {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.65;
+      color: var(--dark);
+      font-style: italic;
+    }
+    .cs-quote-mark {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      opacity: 0.4;
+      font-style: normal;
+    }
+
+    /* ── STAT CARDS ── */
+    .cs-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .cs-stat-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .cs-stat-number { font-size: 36px; font-weight: 700; color: var(--teal); line-height: 1; }
+    .cs-stat-label { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+    /* ── LO-FI DUO: two portrait screens side by side inside a research-pair ── */
+    .cs-lofi-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .cs-screen-mini {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f0ec;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+    .cs-screen-mini img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── HI-FI SCREEN PAIR ── */
+    .cs-hifi-block { margin: 36px 0; }
+    .cs-hifi-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cs-hifi-screen {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f0f0ec;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .cs-hifi-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .cs-hifi-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 6px;
+    }
+    .cs-hifi-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--mid);
+    }
+
+    /* ── FUTURE ITEMS ── */
+    .cs-future-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .cs-future-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 22px;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .cs-future-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--red);
+      text-transform: uppercase;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .cs-future-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+    .cs-future-text strong {
+      font-weight: 600;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── ZOOMABLE IMAGES ── */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* ── IMAGE LIGHTBOX MODAL ── */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-quote-grid { grid-template-columns: 1fr; }
+      .cs-stats-row { grid-template-columns: 1fr; }
+      .cs-hifi-images { grid-template-columns: 1fr; max-width: 100%; }
+      .cs-lofi-duo { grid-template-columns: 1fr 1fr; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 4px 0;
+        z-index: 99;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#ideation"            class="nav-link" data-section="ideation">Ideation</a>
+        <a href="#user-research"       class="nav-link" data-section="user-research">User Research</a>
+        <a href="#lofi-prototype"      class="nav-link" data-section="lofi-prototype">Lo-Fi</a>
+        <a href="#user-testing"        class="nav-link" data-section="user-testing">User Testing</a>
+        <a href="#final-design"        class="nav-link" data-section="final-design">Final Design</a>
+        <a href="#future"              class="nav-link" data-section="future">Future</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="info-design.html"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
+        </div>
+        <div class="case-nav-arrows">
+          <a href="course-registration.html">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">LINGUA</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/LINGUA/thumbnailLingua.png"
+           alt="LINGUA overview"
+           class="cs-zoomable" />
+    </div>
+
+    <h1 class="cs-page-title">LINGUA</h1>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">UX Researcher<br>UI Designer<br>UX Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Duration</span>
+          <span class="cs-meta-value">4 Months</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Senior Capstone Project</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">School</span>
+          <span class="cs-meta-value">Lehigh University</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>LINGUA is a language learning application that occupies the space between Duolingo and Quizlet, designed specifically for the children of immigrants who regularly serve as translators for their families. Rather than teaching vocabulary in isolation, LINGUA addresses the real communication challenges these users encounter through two core features. The first is a library of context-specific learning modules that combine flashcards, structured quizzes, and interactive games, so users can engage with material in whatever way works best for them. The second is a user-generated content system, where individuals can build their own card sets to fill any gaps the preset content does not cover, particularly useful for speakers of regional dialects or underrepresented languages.</p>
+        <p style="margin-top: 14px;">This project was completed as my senior capstone at Lehigh University, representing four years of design education brought together in a single body of work. The concept emerged from my own experience growing up as the child of immigrants, regularly navigating formal situations such as medical appointments, government offices, and school meetings on behalf of my parents. Starting from those lived experiences, I conducted surveys, qualitative interviews, and multiple rounds of user testing to ensure the final design reflected not just my own needs, but those of a much broader community.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         01 - IDEATION
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="ideation">
+      <h2>01 - Ideation</h2>
+    </div>
+
+    <p class="cs-body-text">The project began with qualitative interviews aimed at understanding how children of immigrants navigate language barriers at home and in public. Participants were recruited broadly but all shared the experience of growing up in a household where a language other than English was spoken. The group included individuals with roots in Hong Kong, Nigeria, Chile, Ecuador, and several other countries, providing a diverse range of linguistic and cultural contexts. Interviews explored the frequency and nature of translation tasks participants took on, the emotional weight of those responsibilities, and the tools or strategies they already used to manage them. Across the conversations, two recurring themes emerged: a sense of pressure when faced with formal or technical language, and a feeling of isolation when the vocabulary they needed simply was not available to them.</p>
+
+    <!-- Quote Cards -->
+    <div class="cs-quote-grid">
+      <div class="cs-quote-card">
+        <span class="cs-quote-mark">"</span>
+        <p>It's hard to ask for help, because I can't always understand what's being said or what they're asking me to do.</p>
+      </div>
+      <div class="cs-quote-card">
+        <span class="cs-quote-mark">"</span>
+        <p>I feel overwhelmed when I have to translate everything, especially when it's medical or formal and I'm not fully sure of the words.</p>
+      </div>
+    </div>
+
+    <!-- Affinity Diagram -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/affinitydiagram.png"
+             alt="Affinity diagram synthesizing interview responses"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Affinity Diagram</span>
+        <p class="cs-research-title">Synthesizing patterns across participants</p>
+        <p class="cs-research-desc">Interview responses were organized into affinity diagrams to surface patterns across participants and determine which needs were most widely shared. Grouping the data revealed clear categories around emotional strain, vocabulary gaps, and situation-specific demands. From those categories, I ranked potential features by how directly they addressed the core pain points and how feasible they were within the project scope.</p>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>Several interviewees brought up features like real-time AI translation or direct integration with tools such as Google Translate. While these suggestions were meaningful and worth noting, they fell outside the scope of this project. They are documented here as strong candidates for future development.</p>
+    </div>
+
+    <!-- ════════════════════════
+         02 - USER RESEARCH
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="user-research">
+      <h2>02 - User Research</h2>
+    </div>
+
+    <p class="cs-body-text">With the problem space clearly mapped, I created user personas to represent the range of people who would realistically use LINGUA. The personas were grounded in specific scenarios rather than abstract demographics, capturing use cases such as accompanying a parent to a medical appointment, setting up a new device, navigating paperwork, or simply wanting to deepen fluency in a language tied to family heritage. Rooting the personas in concrete situations made each one a direct pointer to design decisions about structure, content, and what the interface needed to communicate immediately.</p>
+
+    <!-- Persona pair -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/userpersona.png"
+             alt="User persona 1"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/userpersona2.png"
+             alt="User persona 2"
+             class="cs-zoomable" />
+      </div>
+    </div>
+
+    <p class="cs-body-text">The personas then informed a series of user journey maps that traced how a typical user might encounter a language barrier in the real world, reach for the app as a resource, and either succeed or run into friction. Mapping those journeys in full revealed exactly where LINGUA needed to step in and what the interface had to surface clearly and quickly. The journey maps also confirmed which scenarios called for preset expert content and which called for the flexibility of user-generated sets.</p>
+
+    <!-- Research image -->
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/LINGUA/Research.png"
+             alt="User journey map"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">User journey maps tracing real-world language barrier scenarios through the app experience</p>
+    </div>
+
+    <!-- ════════════════════════
+         03 - LO-FI PROTOTYPE
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="lofi-prototype">
+      <h2>03 - Lo-Fi Prototype</h2>
+    </div>
+
+    <!-- IA Architecture -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/IAArchitecture.png"
+             alt="Information architecture diagram for LINGUA"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Information Architecture</span>
+        <p class="cs-research-title">Mapping the structure before touching the screen</p>
+        <p class="cs-research-desc">Before sketching any screens, I built out the information architecture to ensure the app's structure supported every use case identified through research. The diagram mapped every major section of the app, the relationships between them, and the primary actions a user would need to complete in each area. Reviewing the architecture confirmed that the feature set was coherent and that navigation would not require users to search for what they needed.</p>
+      </div>
+    </div>
+
+    <!-- Wireframe -->
+    <div class="cs-research-pair flip">
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/wireframe.png"
+             alt="Lo-fi wireframe sketches for LINGUA"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Wireframe Sketch</span>
+        <p class="cs-research-title">Rough layouts to surface the right questions early</p>
+        <p class="cs-research-desc">With the architecture settled, I moved into lo-fi wireframes. Sketching at low fidelity is useful precisely because the roughness makes it easier to question decisions before they become expensive to change. The process quickly raised several early design questions that would have been easy to defer: what should appear in the navigation bar, how the app should visually distinguish expert-created content from community-generated sets, and how much freedom users should have within each learning mode.</p>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>Sketching the wireframe surfaced questions about navigation depth, how to present expert versus community-created content, and how many options to give users within each learning mode. Resolving these early kept them from compounding into more expensive problems during high-fidelity production.</p>
+    </div>
+
+    <!-- Lofi 1 + 2 -->
+    <div class="cs-research-pair">
+      <div class="cs-lofi-duo">
+        <div class="cs-screen-mini">
+          <img src="../photos/LINGUA/Lofi1.png"
+               alt="Lo-fi screen: Learn feature"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-screen-mini">
+          <img src="../photos/LINGUA/LOfi2.png"
+               alt="Lo-fi screen: Lesson detail"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Lo-Fi Screens 01 + 02</span>
+        <p class="cs-research-title">Learn feature and lesson detail</p>
+        <p class="cs-research-desc">The first screen explored the main learn view, giving users a clear picture of their active lessons and current progress at a glance. The second screen introduced the lesson detail view, where users could see the three learning modes available within each lesson: flashcards for quick review, a structured learn mode for deeper practice, and an interactive game. Exploring how these three modes would coexist on a single screen raised early questions about hierarchy and what the user should encounter first.</p>
+      </div>
+    </div>
+
+    <!-- Lofi 3 + 4 -->
+    <div class="cs-research-pair flip">
+      <div class="cs-lofi-duo">
+        <div class="cs-screen-mini">
+          <img src="../photos/LINGUA/Lofi3.png"
+               alt="Lo-fi screen: Flashcard view"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-screen-mini">
+          <img src="../photos/LINGUA/Lofi4.png"
+               alt="Lo-fi screen: Make section"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Lo-Fi Screens 03 + 04</span>
+        <p class="cs-research-title">Flashcard navigation and content creation</p>
+        <p class="cs-research-desc">The third screen focused on the individual flashcard view, testing whether users could navigate through cards intuitively without any on-screen instruction. The fourth introduced the make section, where users build new card sets from scratch. Testing both at low fidelity allowed me to pressure-test assumptions about swipe-based card interactions and user familiarity with content creation flows before committing to them at high fidelity.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         04 - USER TESTING
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="user-testing">
+      <h2>04 - User Testing</h2>
+    </div>
+
+    <!-- Stat cards -->
+    <div class="cs-stats-row">
+      <div class="cs-stat-card">
+        <span class="cs-stat-number">80%</span>
+        <span class="cs-stat-label">of users tested stated that the navigation bar was <strong>confusing and did not match their mental models</strong></span>
+      </div>
+      <div class="cs-stat-card">
+        <span class="cs-stat-number">70%</span>
+        <span class="cs-stat-label">of users tested found the <strong>search function confusing</strong> or unclear in its placement and behavior</span>
+      </div>
+    </div>
+
+    <p class="cs-body-text">A group of participants, including some who had been interviewed during the ideation phase, completed a structured task flow using the lo-fi prototype. Tasks were chosen to reflect realistic use cases: finding a lesson, reviewing a set of flashcards, creating a new card set, and moving between sections of the app. After completing the tasks, participants shared both verbal feedback and written responses. The results pointed clearly to two recurring problem areas: the navigation bar and the search function. Both emerged as consistent friction points across the majority of participants.</p>
+
+    <div class="cs-insight">
+      <p>The most important finding was that users did not understand what the icons in the navigation bar represented, and labels like "make" failed to give them enough context to identify the section's purpose. Clearer labels and more familiar iconography became the top design priority for the next phase.</p>
+    </div>
+
+    <!-- ════════════════════════
+         05 - FINAL DESIGN
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="final-design">
+      <h2>05 - Final Design</h2>
+    </div>
+
+    <p class="cs-body-text">The final design addressed every significant finding from user testing, reworking the navigation system and search experience while refining the learning flows that already tested well. Each screen was built on a consistent component library, ensuring that interactions and visual language stayed predictable throughout the app.</p>
+
+    <!-- Design System -->
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/LINGUA/designsystem.png"
+             alt="LINGUA design system showing color palette, typography, spacing, and components"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Design System</span>
+        <p class="cs-research-title">A shared foundation for every screen</p>
+        <p class="cs-research-desc">Before building any final screens, I established a design system covering color, typography, spacing, and reusable components. The color palette centers on a warm terracotta red, grounded by deep charcoal and softened with neutral tones. This combination keeps the interface warm and approachable without feeling overwhelming, a deliberate choice for an app that users turn to in high-pressure situations like medical appointments or formal settings.</p>
+        <p class="cs-research-desc" style="margin-top: 8px;">Having the system defined up front meant that every screen, card, button, and label drew from the same source. Colors, type sizes, border radii, and spacing increments were never re-decided screen by screen. That consistency made the final designs feel cohesive without requiring constant rechecking, and it would make handing off to a developer significantly more straightforward.</p>
+      </div>
+    </div>
+
+    <!-- Learn + Explore -->
+    <div class="cs-hifi-block">
+      <div class="cs-hifi-images">
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn.png"
+               alt="Final design: Learn screen"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Explore.png"
+               alt="Final design: Explore screen"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <p class="cs-hifi-label">Learn + Explore</p>
+      <p class="cs-hifi-desc">The navigation was reorganized to provide clearer directional cues for users moving through the app. The learn screen surfaces active lessons alongside contextual details such as progress percentage, the date last studied, and the target language, giving users the information they need to pick up exactly where they left off. A prominent action button draws users directly into their current lesson the moment they open the app. The explore screen allows users to search the full lesson library with quick-filter tags for streamlined browsing. Filtering options include language, content type (expert or community), and other categories. Tags and brief descriptions accompany each result, and a recommended section surfaces lessons based on each user's history.</p>
+    </div>
+
+    <!-- Create + Profile -->
+    <div class="cs-hifi-block">
+      <div class="cs-hifi-images">
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Create.png"
+               alt="Final design: Create screen"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Profile.png"
+               alt="Final design: Profile screen"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <p class="cs-hifi-label">Create + Profile</p>
+      <p class="cs-hifi-desc">The create screen gives users a clear view of both their published and draft lessons, making it easy to pick up an unfinished set or start something new. Editing flows from this screen seamlessly, keeping the creation experience frictionless. The profile screen tracks user activity through stats such as current streak, number of community lessons created, and total completed lessons. Surfacing these figures reinforces a sense of progress and encourages users to return consistently over time.</p>
+    </div>
+
+    <!-- Learn-2 + Learn-5 -->
+    <div class="cs-hifi-block">
+      <div class="cs-hifi-images">
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-2.png"
+               alt="Final design: Word and meaning flashcard"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-5.png"
+               alt="Final design: Word and meaning flashcard alternate"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <p class="cs-hifi-label">Flashcard Mode: Word + Meaning</p>
+      <p class="cs-hifi-desc">The standard flashcard mode presents each word alongside its meaning for direct, low-friction review. The layout is clean and uncluttered, keeping the focus on the vocabulary itself. This mode is designed for users who want a fast, self-directed review session without additional scaffolding.</p>
+    </div>
+
+    <!-- Learn-1 + Learn-6 -->
+    <div class="cs-hifi-block">
+      <div class="cs-hifi-images">
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-1.png"
+               alt="Final design: Sentence flashcard"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-6.png"
+               alt="Final design: Sentence flashcard with phonetics"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <p class="cs-hifi-label">Flashcard Mode: Sentence Context</p>
+      <p class="cs-hifi-desc">The sentence flashcard mode places each target word within a full sentence, paired with a translation and a phonetic transcription. The target word is highlighted within the sentence to draw the eye and reinforce recognition in context. This mode directly addresses one of the core findings from user research: that words encountered in isolation are harder to retain and apply than words seen in a realistic phrase or situation.</p>
+    </div>
+
+    <!-- Learn-3 + Learn-4 -->
+    <div class="cs-hifi-block">
+      <div class="cs-hifi-images">
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-3.png"
+               alt="Final design: Quiz question"
+               class="cs-zoomable" />
+        </div>
+        <div class="cs-hifi-screen">
+          <img src="../photos/LINGUA/Learn-4.png"
+               alt="Final design: Quiz feedback"
+               class="cs-zoomable" />
+        </div>
+      </div>
+      <p class="cs-hifi-label">Quiz Mode: Application + Feedback</p>
+      <p class="cs-hifi-desc">The quiz mode asks users to actively apply what they have been reviewing rather than passively flipping through cards. Each question is followed by immediate feedback, letting users know whether their answer was correct and reinforcing the right response in the moment. This active recall approach is more cognitively demanding than passive review, and the feedback loop ensures users leave each session with a clearer picture of where they stand.</p>
+    </div>
+
+    <!-- ════════════════════════
+         06 - FUTURE IMPLEMENTATION
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="future">
+      <h2>06 - Future Implementation</h2>
+    </div>
+
+    <p class="cs-body-text">LINGUA has a clear path forward beyond its current state. Three directions stand out as the most meaningful next steps for expanding both the product's reach and its impact.</p>
+
+    <div class="cs-future-list">
+      <div class="cs-future-item">
+        <span class="cs-future-num">01</span>
+        <p class="cs-future-text">
+          <strong>Translation and AI Tools</strong>
+          Several participants raised the idea of real-time translation or AI-assisted features during early interviews. While those capabilities fell outside the scope of this project, they represent a natural evolution of what LINGUA already does. Integrating AI translation as a complementary tool would allow users to address urgent translation needs in the moment while continuing to build long-term vocabulary through the existing learning modules.
+        </p>
+      </div>
+      <div class="cs-future-item">
+        <span class="cs-future-num">02</span>
+        <p class="cs-future-text">
+          <strong>Expanded Language Offerings</strong>
+          The current design supports a defined set of languages, but the user-generated content system already creates a pathway toward broader coverage. A dedicated effort to expand the expert-curated library, particularly for regional dialects and languages with limited digital resources, would make LINGUA meaningfully more inclusive for communities that are currently underserved by mainstream language learning tools.
+        </p>
+      </div>
+      <div class="cs-future-item">
+        <span class="cs-future-num">03</span>
+        <p class="cs-future-text">
+          <strong>Social Features and Healthy Competition</strong>
+          Language learning is easier to sustain when it feels shared. Adding the ability to follow friends, see their progress, and participate in friendly challenges would give users a social incentive to return consistently. Leaderboards, collaborative sets, and streak-sharing features could transform LINGUA from a personal tool into a community-driven experience, deepening engagement without compromising the focused, low-pressure learning environment the app currently provides.
+        </p>
+      </div>
+    </div>
+
+    <!-- Poster Photo -->
+    <div class="cs-img-full" style="margin-top: 60px;">
+      <div class="cs-img-box" style="background: #e8e8e4; max-width: 480px; margin: 0 auto;">
+        <img src="../photos/LINGUA/Poster.jpg"
+             alt="Ryan Javier presenting LINGUA at the senior capstone poster expo"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Me at my senior capstone poster expo!</p>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['ideation', 'user-research', 'lofi-prototype', 'user-testing', 'final-design', 'future'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Hamburger menu
+    const burger  = document.getElementById('navHamburger');
+    const navMenu = document.querySelector('.nav-links');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+      });
+      navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

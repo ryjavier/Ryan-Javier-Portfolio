@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auroworld - Ryan Javier</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #ED1C24;
+      --orange: #F7941D;
+      --teal: #4A8B8C;
+      --teal-light: #B8D8D9;
+      --teal-dark: #3a7a7b;
+      --bg: #f5f5f0;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --light: #888;
+      --border: #ddd;
+      --font: 'IBM Plex Sans', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--red); }
+
+    /* ── SUBWAY SIGN BAR ── */
+    .case-nav-bar {
+      position: static;
+      background: #1c1c1c;
+      display: flex;
+      flex-direction: column;
+    }
+    .case-nav-inner-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .case-nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 0;
+    }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
+    .case-nav-arrows a {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color 0.2s;
+    }
+    .case-nav-arrows a:hover { color: white; }
+    .case-nav-arrow-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: 2.5px solid #666;
+      border-radius: 3px;
+      font-size: 13px;
+      line-height: 1;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .case-nav-arrows a:hover .case-nav-arrow-icon { border-color: white; color: white; }
+    .case-nav-black-gap { height: 6px; background: #1c1c1c; }
+    .case-nav-white-rule { height: 2px; background: #ffffff; }
+    .case-nav-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0 10px;
+    }
+    .case-nav-title {
+      font-family: var(--font);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.03em;
+      text-transform: none;
+      line-height: 1;
+    }
+    .case-nav-dot {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .case-study {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HERO IMAGE ── */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #6b4fa0;
+    }
+    .cs-hero img { width: 100%; height: auto; display: block; }
+
+    /* ── META + ABOUT ROW ── */
+    .cs-meta-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+    .cs-meta { display: flex; flex-direction: column; gap: 20px; }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .cs-meta-value { font-size: 13px; color: var(--dark); line-height: 1.5; }
+    .cs-section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+    .cs-page-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
+
+    /* ── BACK LINK ── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    /* ── SECTION HEADING with extending line ── */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── BODY TEXT ── */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* ── INSIGHT PULL QUOTE ── */
+    .cs-insight {
+      border-left: 3px solid var(--red);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(237,28,36,0.04);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── RESEARCH PAIR: image one side, text the other ── */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img { width: 100%; height: auto; display: block; }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .cs-research-title { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+    .cs-research-desc { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── HORIZONTAL SCROLL TRACK (AI UI images) ── */
+    .cs-scroll-wrap {
+      margin: 28px -24px;
+      padding: 0 24px 0;
+      overflow: hidden;
+    }
+    .cs-scroll-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+    }
+    .cs-scroll-track::-webkit-scrollbar { height: 4px; }
+    .cs-scroll-track::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+    .cs-scroll-track::-webkit-scrollbar-thumb { background: #bbb; border-radius: 2px; }
+    .cs-scroll-card {
+      flex: 0 0 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-snap-align: start;
+    }
+    .cs-scroll-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #1e1b2e;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.12);
+      height: 280px;
+    }
+    .cs-scroll-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .cs-scroll-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-scroll-page {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .cs-scroll-title {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--mid);
+    }
+
+    /* ── VIDEO BLOCK ── */
+    .cs-video-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1e1b2e;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.14);
+      margin: 28px 0;
+    }
+    .cs-video-wrap video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .navbar:not(:has(.nav-link)) .nav-hamburger { display: none !important; }
+
+    /* ── CLICKABLE IMAGES ── */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* ── IMAGE LIGHTBOX MODAL ── */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
+
+    @media (max-width: 640px) {
+      .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
+      .cs-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-scroll-card { flex: 0 0 320px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 4px 0;
+        z-index: 99;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#user-research"    class="nav-link" data-section="user-research">User Research</a>
+        <a href="#lofi-prototype"   class="nav-link" data-section="lofi-prototype">Lo-Fi</a>
+        <a href="#midfi-prototype"  class="nav-link" data-section="midfi-prototype">Mid-Fi</a>
+        <a href="#final-design"     class="nav-link" data-section="final-design">Final Design</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- SUBWAY SIGN BAR -->
+  <div class="case-nav-bar">
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-top">
+        <div class="case-nav-arrows">
+          <a href="course-registration.html"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
+        </div>
+        <div class="case-nav-arrows">
+          <a href="aptatic-analytics.html">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="case-nav-black-gap"></div>
+    <div class="case-nav-white-rule"></div>
+    <div class="case-nav-inner-wrap">
+      <div class="case-nav-bottom">
+        <div class="case-nav-title">Auroworld</div>
+        <div class="case-nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="case-study">
+
+    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/Auroworld/thumbnailAuroworld.png"
+           alt="Auroworld final design screens"
+           class="cs-zoomable" />
+    </div>
+
+    <h1 class="cs-page-title">Auroworld</h1>
+
+    <!-- META + ABOUT -->
+    <div class="cs-meta-row">
+      <div class="cs-meta">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">UI Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Duration</span>
+          <span class="cs-meta-value">4 Months</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Client</span>
+          <span class="cs-meta-value">Lehigh Alum</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Type</span>
+          <span class="cs-meta-value">Brand Identity<br>UI Design</span>
+        </div>
+      </div>
+      <div class="cs-about-block">
+        <p class="cs-section-eyebrow">About</p>
+        <p>Auroworld is a web-based language learning platform designed specifically for seniors. The product allows instructors to create and monetize courses while giving learners a structured, accessible environment to build new language skills at their own pace. The client, a Lehigh alum, came to the project with a clear vision: something as intuitive as Udemy but built with an older audience in mind.</p>
+        <p style="margin-top: 14px;">I joined as a design consultant and UI designer, working alongside a team of developers and a product manager. My role was to translate the team's feature requirements into a coherent interface while keeping accessibility at the center of every decision. The challenge was building something that felt modern and capable without becoming overwhelming for users who may not be comfortable with complex digital products.</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         01 - USER RESEARCH
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="user-research">
+      <h2>01 - User Research</h2>
+    </div>
+
+    <p class="cs-body-text">Before any design work began, I needed to understand what the team had already envisioned. The developers came with a defined feature set and a rough idea of how it should be organized. To communicate that vision, they provided AI generated interface mockups showing the general layout they had in mind. These screens included a social feed for both instructors and participants, a calendar view so learners could see their upcoming classes at a glance, and a messaging system for communicating with instructors and exchanging homework attachments. Reviewing these mockups gave me an entry point into the team's mental model before I started forming my own.</p>
+
+    <div class="cs-scroll-wrap">
+      <div class="cs-scroll-track">
+
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/Auroworld/AIUI.png"
+                 alt="AI generated MVP home feed and calendar sidebar"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Screen 1</p>
+            <p class="cs-scroll-title">Home feed and calendar sidebar</p>
+          </div>
+        </div>
+
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/Auroworld/AIUI2.png"
+                 alt="AI generated MVP messages screen"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Screen 2</p>
+            <p class="cs-scroll-title">Messages</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>Reading through the AI mockups helped me understand not just what features the team wanted, but how they imagined users moving through the product. It gave me a clear picture of their priorities before I started asking questions.</p>
+    </div>
+
+    <p class="cs-body-text">With the team's feature priorities mapped out, I moved into competitive analysis. Udemy was the primary reference point the client had in mind, so I studied it alongside other language learning and online course platforms. I paid particular attention to how each product handled navigation, course discovery, and accessibility settings, since those would be the most critical areas to get right for a senior audience. Looking at what worked and what felt cluttered in existing products gave me a clearer baseline for where Auroworld needed to differentiate itself.</p>
+
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/Auroworld/CompetitiveAnalysis.png"
+             alt="Competitive analysis comparing Udemy and similar platforms"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Competitive analysis referencing Udemy and similar language learning platforms</p>
+    </div>
+
+    <!-- ════════════════════════
+         02 - LO-FI PROTOTYPE
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="lofi-prototype">
+      <h2>02 - Lo-Fi Prototype</h2>
+    </div>
+
+    <div class="cs-research-pair">
+      <div class="cs-research-img">
+        <img src="../photos/Auroworld/InformationArchitecture.png"
+             alt="Information architecture diagram for Auroworld"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Information Architecture</span>
+        <p class="cs-research-title">Mapping the structure before touching the screen</p>
+        <p class="cs-research-desc">Before sketching a single screen, I diagrammed the full information architecture and shared it with the team to confirm that my understanding of the product matched theirs. The diagram covered every major section, how they connected, and where key actions like enrolling in a course or viewing a calendar event would live. After a round of minor feedback, I used it as a blueprint to start sketching layouts.</p>
+      </div>
+    </div>
+
+    <div class="cs-research-pair flip">
+      <div class="cs-research-img">
+        <img src="../photos/Auroworld/Lofi.png"
+             alt="Lo-fi wireframe sketches for Auroworld"
+             class="cs-zoomable" />
+      </div>
+      <div class="cs-research-text">
+        <span class="cs-research-label">Wireframe Sketch</span>
+        <p class="cs-research-title">Rough layouts to question early decisions</p>
+        <p class="cs-research-desc">The lo-fi sketches were less about getting things right and more about surfacing the right questions early. Working through the layouts by hand forced decisions that would have been easy to defer: should the full calendar live on the home page, or is showing just the current day enough? What does a course card need to show before the user commits to clicking for more? Where do account settings, notifications, and messages belong without cluttering the primary nav? Answering these questions at the sketch stage kept them from becoming expensive problems later.</p>
+      </div>
+    </div>
+
+    <div class="cs-insight">
+      <p>To keep the experience consistent across pages, I applied a one-third grid throughout: the left column for navigation, the center for primary content, and the right for supplementary information and controls. Keeping this structure constant meant users could orient themselves immediately on any screen without having to relearn the layout.</p>
+    </div>
+
+    <!-- ════════════════════════
+         03 - MID-FI PROTOTYPE
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="midfi-prototype">
+      <h2>03 - Mid-Fi Prototype</h2>
+    </div>
+
+    <p class="cs-body-text">With the structure established, I moved into Figma to build mid-fidelity screens. Rather than committing to a single direction, I created multiple variations of each page and presented them to the team for review. Because the developers and product manager had a much closer relationship with the intended users, their feedback carried real weight. They could tell me, with confidence, what would feel intuitive to a senior learner and what would not. The variations covered a range of decisions: how the accessibility settings panel should be presented, where a search filter would be least disruptive, and whether a weekly or daily calendar view would be more useful on the home screen. Each round of feedback narrowed the choices until we had a single direction that the whole team felt good about.</p>
+
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/Auroworld/Midfi.png"
+             alt="Mid-fidelity prototype screens showing page variations"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Mid-fi screens showing layout variations reviewed with the development team</p>
+    </div>
+
+    <div class="cs-insight">
+      <p>Accessibility was a design constraint at every stage, not an afterthought. All body text was set above 16pt, interactive elements were sized for easy tapping, and card and button contrast ratios were tested to ensure legibility for users with reduced vision. These constraints shaped the visual system as much as any aesthetic decision.</p>
+    </div>
+
+    <!-- ════════════════════════
+         04 - FINAL DESIGN
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="final-design">
+      <h2>04 - Final Design</h2>
+    </div>
+
+    <p class="cs-body-text">The final design was built on a cohesive design system covering color, type, spacing, and components. The color palette centers on violet and lavender, a choice with two intentions: the warmth of the hues reflects the richness and cultural depth of language learning, while the cooler tones create a calm, low-pressure environment for seniors who might feel anxious picking up a new skill. The palette also provided strong contrast opportunities between surface colors, making cards, buttons, and interactive states easy to distinguish at a glance.</p>
+    <p class="cs-body-text" style="margin-top: -12px;">The typeface was selected for its clean geometry and strong legibility at large sizes. All body copy was set above 16pt and headers were scaled generously to reduce reading effort. Google Material Icons provided the iconography, bringing a set of familiar symbols that many users already recognize from other apps, which lowered the learning curve for navigating the interface without any added explanation.</p>
+
+    <div class="cs-video-wrap">
+      <video autoplay loop muted playsinline
+             aria-label="Auroworld final design walkthrough">
+        <source src="../photos/Auroworld/Auroworld.mov" type="video/mp4">
+        Your browser does not support this video format.
+      </video>
+    </div>
+    <p class="cs-img-caption" style="margin-top: -16px; margin-bottom: 28px;">Final design walkthrough</p>
+
+    <div class="cs-insight">
+      <p>The goal throughout was to prove that accessible design and modern design are not competing priorities. Auroworld needed to feel polished and credible to attract instructors, while remaining clear and low-stress for the seniors actually using it. The final design tries to hold both of those things at once.</p>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['user-research', 'lofi-prototype', 'midfi-prototype', 'final-design'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Hamburger menu
+    const burger  = document.getElementById('navHamburger');
+    const navMenu = document.querySelector('.nav-links');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+      });
+      navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
