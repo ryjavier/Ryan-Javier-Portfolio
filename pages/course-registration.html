@@ -191,6 +191,13 @@
       margin-bottom: 10px;
     }
     .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+    .cs-page-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
 
     /* ── SECTION HEADING with extending line ── */
     .cs-section-heading {
@@ -524,6 +531,8 @@
       <img src="../photos/courseRegistration/BigScheduleUICL01+CV01UISelected.png" alt="Course Registration final UI shown on MacBook" />
     </div>
 
+    <h1 class="cs-page-title">Course Registration</h1>
+
     <!-- META + ABOUT -->
     <div class="cs-meta-row">
       <div class="cs-meta">
@@ -547,6 +556,7 @@
       <div class="cs-about-block">
         <p class="cs-section-eyebrow">About</p>
         <p>University course registration is one of the most consequential and most frustrating systems students interact with every semester. This project set out to understand why that friction exists and redesign the experience from the ground up through rigorous user research, iterative prototyping, and validated design decisions.</p>
+        <p style="margin-top: 14px;">This one started with me. When I first arrived at SUTD as an exchange student, navigating the new portal was genuinely disorienting. I didn't know where to start or what I was looking at. That experience stuck, and it became the lens I used to approach every decision in this redesign.</p>
       </div>
     </div>
 
@@ -640,6 +650,10 @@
       </div>
     </div>
 
+    <div class="cs-insight">
+      <p>Users didn't like the collapsing schedule. Having it hidden by default felt like losing information they needed. We also asked them to rank what actually mattered when picking classes, and those priorities directly shaped what we chose to surface in the high fidelity.</p>
+    </div>
+
     <!-- ════════════════════════
          03 - FINAL DESIGN
     ════════════════════════ -->
@@ -648,6 +662,10 @@
     </div>
 
     <p class="cs-body-text">The final design unifies course browsing, section selection, and schedule visualization into a single interface. Pillar and Term filters narrow the catalog up front. A shopping cart model lets students plan before committing. The schedule panel updates in real time as sections are selected, and any time conflicts surface immediately with a transparent notice modal rather than a silent block.</p>
+
+    <div class="cs-insight">
+      <p>For color, we gave local Singaporean students three options and a neutral brown came out the clear winner. Green and red were brought in as secondary accents for action buttons, and the multi-window layout was kept fully open so students could see everything at once without bouncing between screens.</p>
+    </div>
 
     <!-- Schedule view: small thumbnail left, text right -->
     <div class="cs-research-pair">

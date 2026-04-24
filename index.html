@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
   <section id="hero">
@@ -61,6 +61,20 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== LED DOT-MATRIX TICKER ===== -->
+  <div class="led-ticker-outer">
+    <div class="led-ticker-poles">
+      <div class="led-pole"></div>
+      <div class="led-pole"></div>
+    </div>
+    <div class="led-ticker-wrap" aria-label="Scrolling information ticker" role="marquee">
+      <div class="led-ticker-inner">
+        <div class="led-ticker-track" id="ledTickerTrack"></div>
+      </div>
+    </div>
+  </div>
+
   <section id="work">
     <div class="section-card work-card">
       <div class="section-header teal">
@@ -73,8 +87,6 @@
         <div style="display:flex;gap:28px;flex-wrap:wrap;">
           <div class="legend-item"><span class="legend-line red-legend"></span><span>RED LINE: UI/UX</span></div>
           <div class="legend-item"><span class="legend-line orange-legend"></span><span>ORANGE LINE: GRAPHIC DESIGN</span></div>
-          <div class="legend-item"><span class="legend-line blue-legend"></span><span>BLUE LINE</span></div>
-          <div class="legend-item"><span class="legend-line green-legend"></span><span>GREEN LINE</span></div>
         </div>
       </div>
 
@@ -334,8 +346,8 @@
    <!-- ===== CONTACT ===== -->
    <section id="contact">
     <div class="contact-inner">
-      <p class="end-of-line">END OF THE LINE</p>
-      <h2>Let's connect.</h2>
+      <img src="photos/letsconnect.png" alt="End of Line — Lets connect!" class="contact-hero-img" />
+
       <p class="contact-sub">I'm always open to conversations about design, technology, and the spaces where they overlap. If you're working on something interesting or looking for a designer who builds, I'd love to hear from you.</p>
       <div class="contact-links">
         <a href="mailto:ryanjaviericus@gmail.com">✉ ryanjaviericus@gmail.com</a>

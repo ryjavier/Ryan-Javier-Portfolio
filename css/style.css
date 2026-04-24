@@ -41,6 +41,7 @@
     justify-content: center;
     background: var(--bg);
     position: relative;
+    overflow: hidden;
   }
   
   .flipboard-wrapper {
@@ -779,6 +780,13 @@
     color: var(--light);
     margin-bottom: 10px;
   }
+  .contact-hero-img {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+  }
   .contact-inner h2 {
     font-family: var(--font);
     font-size: 40px;
@@ -892,6 +900,169 @@
   .meta-value { font-size: 13px; color: var(--dark); }
   
   /* ===========================
+     LED DOT-MATRIX TICKER
+  =========================== */
+
+  /* Pull the ticker flush under the about card so poles bridge the gap */
+  #about { padding-bottom: 0; }
+
+  .led-ticker-outer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .led-ticker-poles {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 56px;
+  }
+
+  .led-pole {
+    width: 10px;
+    height: 52px;
+    background: linear-gradient(
+      to right,
+      #0a0a0a 0%,
+      #3a3a3a 35%,
+      #4e4e4e 50%,
+      #2e2e2e 65%,
+      #0a0a0a 100%
+    );
+    border-radius: 0 0 2px 2px;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.35), -1px 0 3px rgba(0,0,0,0.2);
+    position: relative;
+  }
+
+  /* Mounting bracket cap at top of each pole */
+  .led-pole::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 8px;
+    background: linear-gradient(
+      to right,
+      #080808 0%,
+      #2e2e2e 40%,
+      #444 55%,
+      #1a1a1a 100%
+    );
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.35);
+  }
+
+  /* Screw-head detail on the bracket */
+  .led-pole::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle at 35% 35%, #555, #111);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+  }
+
+  .led-ticker-wrap {
+    background: #0c0800;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #2e1c00;
+    box-shadow:
+      inset 0 4px 20px rgba(0,0,0,0.9),
+      inset 0 -4px 20px rgba(0,0,0,0.9),
+      0 2px 20px rgba(0,0,0,0.08);
+    --ticker-duration: 60s;
+  }
+
+  /* Horizontal scanlines for CRT/LED panel realism */
+  .led-ticker-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(0,0,0,0.18) 3px,
+      rgba(0,0,0,0.18) 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Edge vignette so text fades in/out at the sides */
+  .led-ticker-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      #0c0800 0%,
+      transparent 5%,
+      transparent 95%,
+      #0c0800 100%
+    );
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .led-ticker-inner {
+    display: flex;
+    align-items: center;
+    height: 88px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .led-ticker-track {
+    display: flex;
+    flex-shrink: 0;
+    white-space: nowrap;
+    will-change: transform;
+    animation: ledScroll var(--ticker-duration) linear infinite;
+  }
+
+  .led-ticker-segment {
+    display: inline-block;
+    padding-right: 120px;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffa726;
+    text-shadow:
+      0 0 3px #ffe082,
+      0 0 7px #ffb300,
+      0 0 14px #ff8f00,
+      0 0 28px rgba(255,111,0,0.45),
+      0 0 50px rgba(255,80,0,0.15);
+    animation: ledFlicker 11s ease-in-out infinite;
+  }
+
+  @keyframes ledScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @keyframes ledFlicker {
+    0%,  88%,  100% { opacity: 1; }
+    89%             { opacity: 0.82; }
+    90%             { opacity: 1; }
+    93%             { opacity: 0.91; }
+    94%             { opacity: 1; }
+    97%             { opacity: 0.86; }
+    98%             { opacity: 1; }
+  }
+
+  /* ===========================
      RESPONSIVE — MOBILE
   =========================== */
 
@@ -903,7 +1074,6 @@
      "NOT JUST THE DESTINATION" is ~829px wide at 1×.
      zoom 0.72 → ~597px, fits inside 641px − 48px padding = 593px (±2px). */
   @media (min-width: 641px) and (max-width: 900px) {
-    #hero { overflow: hidden; }
     .flipboard-wrapper { zoom: 0.72; }
   }
 
@@ -911,9 +1081,6 @@
   @media (max-width: 640px) {
     /* General spacing */
     section { padding: 40px 16px; }
-
-    /* Hero: clip overflow from scaled flipboard */
-    #hero { overflow: hidden; }
 
     /* Mobile layout: widest row is "THE DESTINATION" at ~547px.
        zoom 0.88 → ~481px, comfortably inside 640px - 32px = 608px available. */
@@ -1006,8 +1173,16 @@
     .timeline-thumb:empty { display: none; }
 
     /* Contact */
-    .contact-inner h2 { font-size: 30px; }
+    .contact-hero-img { max-width: 100%; }
     .contact-links { flex-direction: column; gap: 12px; }
+  }
+
+  /* Ticker: smaller text on mobile */
+  @media (max-width: 640px) {
+    .led-ticker-inner { height: 72px; }
+    .led-ticker-segment { font-size: 13px; padding-right: 80px; }
+    .led-ticker-poles { padding: 0 36px; }
+    .led-pole { height: 40px; }
   }
 
   /* ── Phone (≤480px) ── */

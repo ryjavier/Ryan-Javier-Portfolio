@@ -112,7 +112,10 @@ function setTileFinal(wrap, ch) {
   wrap._char = ch;
 }
 
-function runFlipboard() {
+// Track the last breakpoint so resize only rebuilds when the tier actually changes
+let _lastIsMobile = null;
+
+function runFlipboard(forceAnimate) {
   const nameRow  = document.getElementById('flip-name');
   const name2Row = document.getElementById('flip-name-2');
   const tag1Row  = document.getElementById('flip-tagline-1');
@@ -124,6 +127,10 @@ function runFlipboard() {
   //   mobile (≤640px) — name splits to 2 rows; tagline uses 3-line split
   //   web    (>640px) — name stays 1 row;      tagline uses 2-line split
   const isMobile = window.innerWidth <= 640;
+
+  // On resize: only rebuild if the tier actually flipped; skip the animation
+  if (!forceAnimate && isMobile === _lastIsMobile) return;
+  _lastIsMobile = isMobile;
 
   // Name
   const nameText  = isMobile ? 'RYAN'   : 'RYAN JAVIER';
@@ -143,16 +150,19 @@ function runFlipboard() {
 
   const nameTiles  = buildRow(nameRow,  nameText);
   const name2Tiles = name2Text ? buildRow(name2Row, name2Text) : [];
+  // Clear rows that aren't used in this tier so they don't show stale content
+  if (!name2Text) name2Row.innerHTML = '';
   const t1Tiles    = buildRow(tag1Row, t1Text);
   const t2Tiles    = buildRow(tag2Row, t2Text);
   const t3Tiles    = t3Text ? buildRow(tag3Row, t3Text) : [];
+  if (!t3Text) tag3Row.innerHTML = '';
 
-  // Only animate on first load (hard refresh or direct visit).
-  // When navigating back from a case study page, show the final text immediately.
+  // Only animate on the very first page load in a session.
+  // Resize rebuilds and back-navigation both use instant tile set.
   const hasVisited = sessionStorage.getItem('flipboard_seen');
 
-  if (hasVisited) {
-    // Already seen this session — show final state instantly, no animation
+  if (!forceAnimate || hasVisited) {
+    // Show final state instantly (resize or return visit)
     nameTiles.forEach(({ tile, ch })  => setTileFinal(tile, ch));
     name2Tiles.forEach(({ tile, ch }) => setTileFinal(tile, ch));
     t1Tiles.forEach(({ tile, ch })    => setTileFinal(tile, ch));
@@ -178,4 +188,14 @@ function runFlipboard() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', runFlipboard);
+// Debounced resize: rebuild content instantly if the mobile/web tier changes
+let _resizeTimer;
+function onResize() {
+  clearTimeout(_resizeTimer);
+  _resizeTimer = setTimeout(() => runFlipboard(false), 150);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  runFlipboard(true);
+  window.addEventListener('resize', onResize);
+});
