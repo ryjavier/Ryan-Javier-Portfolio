@@ -827,6 +827,25 @@
     transition: color 0.2s;
   }
   .contact-links a:hover { color: var(--teal); }
+  .contact-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    color: var(--mid);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-icon-link svg {
+    width: 20px;
+    height: 20px;
+  }
+  .contact-icon-link:hover {
+    color: var(--teal);
+    border-color: var(--teal);
+  }
   
   /* ===========================
      WORK DETAIL PAGE

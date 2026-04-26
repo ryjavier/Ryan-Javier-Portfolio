@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aptatio Analytics - Ryan Javier</title>
+  <link rel="icon" type="image/x-icon" href="../photos/Redfavicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
       --red: #ED1C24;
+      --orange: #F7941D;
       --teal: #4A8B8C;
       --teal-light: #B8D8D9;
       --teal-dark: #3a7a7b;
@@ -57,6 +59,22 @@
       text-decoration: none;
       white-space: nowrap;
     }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-link {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--dark); border-bottom-color: var(--teal); }
+    .nav-link.active { color: var(--dark); border-bottom-color: var(--red); }
 
     /* ── SUBWAY SIGN BAR ── */
     .case-nav-bar {
@@ -77,6 +95,7 @@
       justify-content: space-between;
       padding: 11px 0;
     }
+    .case-nav-arrows { display: flex; align-items: center; gap: 20px; }
     .case-nav-arrows a {
       font-family: var(--font);
       font-size: 10px;
@@ -118,6 +137,7 @@
       font-weight: 700;
       color: white;
       letter-spacing: 0.03em;
+      text-transform: none;
       line-height: 1;
     }
     .case-nav-dot {
@@ -127,106 +147,30 @@
       flex-shrink: 0;
     }
 
-    /* ── MAIN ── */
+    /* ── MAIN CONTENT ── */
     .case-study {
       max-width: 860px;
       margin: 0 auto;
       padding: 48px 24px 80px;
     }
 
-    .cs-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--light);
-      text-decoration: none;
-      margin-bottom: 36px;
-      transition: color 0.2s;
+    /* ── HERO IMAGE ── */
+    .cs-hero {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 44px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      background: #d4ecee;
     }
-    .cs-back:hover { color: var(--teal); }
+    .cs-hero img { width: 100%; height: auto; display: block; }
 
-    .cs-page-title {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-
-    /* ── PLACEHOLDER BLOCK ── */
-    .cs-placeholder {
-      margin-top: 48px;
-      border: 1.5px dashed var(--border);
-      border-radius: 12px;
-      padding: 64px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-    }
-    .cs-placeholder-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #1c1c1c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-    }
-    .cs-placeholder-icon svg {
-      width: 22px;
-      height: 22px;
-      fill: none;
-      stroke: white;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .cs-placeholder-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--light);
-    }
-    .cs-placeholder-title {
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--dark);
-      line-height: 1.3;
-    }
-    .cs-placeholder-desc {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--mid);
-      max-width: 480px;
-    }
-    .cs-placeholder-tag {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--teal);
-      background: rgba(74,139,140,0.1);
-      border: 1px solid var(--teal-light);
-      border-radius: 4px;
-      padding: 5px 12px;
-      margin-top: 4px;
-    }
-
-    /* ── META ROW ── */
+    /* ── META + ABOUT ROW ── */
     .cs-meta-row {
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: 40px;
-      margin-bottom: 0;
+      margin-bottom: 60px;
       align-items: start;
     }
     .cs-meta { display: flex; flex-direction: column; gap: 20px; }
@@ -248,11 +192,320 @@
       margin-bottom: 10px;
     }
     .cs-about-block p { font-size: 14px; line-height: 1.8; color: var(--mid); }
+    .cs-page-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.2;
+      margin-bottom: 36px;
+    }
+
+    /* ── BACK LINK ── */
+    .cs-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-decoration: none;
+      margin-bottom: 36px;
+      transition: color 0.2s;
+    }
+    .cs-back:hover { color: var(--teal); }
+
+    /* ── SECTION HEADING with extending line ── */
+    .cs-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      margin-top: 48px;
+    }
+    .cs-section-heading h2 {
+      font-family: var(--font);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+    .cs-section-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── BODY TEXT ── */
+    .cs-body-text {
+      font-size: 14px;
+      line-height: 1.82;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    /* ── BULLET LIST ── */
+    .cs-list {
+      margin: 0 0 28px 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .cs-list li {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+
+    /* ── INSIGHT PULL QUOTE ── */
+    .cs-insight {
+      border-left: 3px solid var(--red);
+      padding: 12px 20px;
+      margin: 28px 0;
+      background: rgba(237,28,36,0.04);
+      border-radius: 0 6px 6px 0;
+    }
+    .cs-insight p {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── RESEARCH PAIR: image one side, text the other ── */
+    .cs-research-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin: 32px 0;
+    }
+    .cs-research-pair.flip { direction: rtl; }
+    .cs-research-pair.flip > * { direction: ltr; }
+    .cs-research-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-research-img img { width: 100%; height: auto; display: block; }
+    .cs-research-text { display: flex; flex-direction: column; gap: 10px; }
+    .cs-research-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .cs-research-title { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1.35; }
+    .cs-research-desc { font-size: 13px; line-height: 1.75; color: var(--mid); }
+
+    /* ── TWO-IMAGE ROW ── */
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .cs-two-col-item { display: flex; flex-direction: column; gap: 8px; }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .cs-img-full { margin: 28px 0; }
+    .cs-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #e8e8e4;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .cs-img-box img { width: 100%; height: auto; display: block; }
+    .cs-img-caption {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── HORIZONTAL SCROLL TRACK ── */
+    .cs-scroll-wrap {
+      margin: 28px -24px;
+      padding: 0 24px 0;
+      overflow: hidden;
+    }
+    .cs-scroll-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-start;
+    }
+    .cs-scroll-track::-webkit-scrollbar { height: 4px; }
+    .cs-scroll-track::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+    .cs-scroll-track::-webkit-scrollbar-thumb { background: #bbb; border-radius: 2px; }
+    .cs-scroll-card {
+      flex: 0 0 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-snap-align: start;
+    }
+    .cs-scroll-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f0f0ec;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.12);
+      height: 300px;
+    }
+    .cs-scroll-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+    .cs-scroll-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-scroll-page {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .cs-scroll-title {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--mid);
+    }
+
+    /* ── HAMBURGER MENU ── */
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .navbar:not(:has(.nav-link)) .nav-hamburger { display: none !important; }
+
+    /* ── CLICKABLE IMAGES ── */
+    .cs-zoomable {
+      cursor: zoom-in;
+      transition: opacity 0.15s;
+    }
+    .cs-zoomable:hover { opacity: 0.88; }
+
+    /* ── IMAGE LIGHTBOX MODAL ── */
+    .img-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      backdrop-filter: blur(4px);
+      padding: 24px;
+    }
+    .img-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .img-modal-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-modal-inner img {
+      max-width: 90vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: block;
+      transform: scale(0.95);
+      transition: transform 0.22s ease;
+    }
+    .img-modal-overlay.open .img-modal-inner img { transform: scale(1); }
+    .img-modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      transition: background 0.15s;
+      z-index: 10;
+      font-family: var(--font);
+    }
+    .img-modal-close:hover { background: var(--bg); }
 
     @media (max-width: 640px) {
       .cs-meta-row { grid-template-columns: 1fr; gap: 24px; }
-      .cs-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .cs-placeholder { padding: 48px 24px; }
+      .cs-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+      .cs-research-pair,
+      .cs-research-pair.flip { grid-template-columns: 1fr; direction: ltr; }
+      .cs-two-col { grid-template-columns: 1fr; }
+      .cs-scroll-card { flex: 0 0 320px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 4px 0;
+        z-index: 99;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 24px; }
     }
   </style>
 </head>
@@ -262,6 +515,14 @@
   <nav class="navbar">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#initial-research"    class="nav-link" data-section="initial-research">Initial Research</a>
+        <a href="#building-the-brand"  class="nav-link" data-section="building-the-brand">Building the Brand</a>
+        <a href="#design-applications" class="nav-link" data-section="design-applications">Design Applications</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -292,37 +553,249 @@
 
     <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
 
+    <!-- HERO -->
+    <div class="cs-hero">
+      <img src="../photos/AptatioAnalytics/Thumbnail.jpg"
+           alt="Aptatio Analytics brand and design system"
+           class="cs-zoomable" />
+    </div>
+
     <h1 class="cs-page-title">Aptatio Analytics</h1>
 
-    <!-- META -->
+    <!-- META + ABOUT -->
     <div class="cs-meta-row">
       <div class="cs-meta">
         <div class="cs-meta-item">
-          <span class="cs-meta-label">Type</span>
-          <span class="cs-meta-value">Usability Testing</span>
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Brand Designer</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Duration</span>
+          <span class="cs-meta-value">4 Months</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Client</span>
+          <span class="cs-meta-value">Lehigh MBA Student</span>
         </div>
       </div>
       <div class="cs-about-block">
         <p class="cs-section-eyebrow">About</p>
-        <p>A usability study evaluating the Aptatio Analytics platform. Full case study coming soon.</p>
+        <p>Aptatio Analytics is an app that uses predictive analysis and machine learning to optimize the patient/client team match, increasing a home healthcare agency's ability to earn the VBP payment reward. I was asked to join the team to help with their design needs.</p>
+        <p style="margin-top: 14px;">While I was initially brought on to assist with UI, it became clear early on that the team's more pressing need was a cohesive brand identity. Without a clear visual language, any interface work would lack a foundation. I shifted focus to building the brand first, treating it as the groundwork that everything else would be built on top of.</p>
       </div>
     </div>
 
-    <!-- PLACEHOLDER -->
-    <div class="cs-placeholder">
-      <div class="cs-placeholder-icon">
-        <!-- wrench / tools icon -->
-        <svg viewBox="0 0 24 24">
-          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
-        </svg>
+    <!-- ════════════════════════
+         01 - INITIAL RESEARCH
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="initial-research">
+      <h2>01 - Initial Research</h2>
+    </div>
+
+    <p class="cs-body-text">I began the project by working with the team to audit their existing system. They walked me through an AI-generated MVP that covered the basic user flow. It gave me a starting point for understanding what the product was trying to do, but reviewing it also made some gaps immediately apparent.</p>
+
+    <ul class="cs-list">
+      <li>The logo and branding felt generic and did not communicate anything meaningful about what the company does or who it serves.</li>
+      <li>The MVP opened directly into the intake form with no landing page or context-setting screen, which would likely confuse new users unfamiliar with the product.</li>
+    </ul>
+
+    <p class="cs-body-text">These observations shaped the priorities for the project. Before any screen could be redesigned, the team needed a brand that gave the product a clear identity and communicated trust to the healthcare professionals using it.</p>
+
+    <div class="cs-two-col">
+      <div class="cs-two-col-item">
+        <div class="cs-img-box">
+          <img src="../photos/AptatioAnalytics/MVP1.png"
+               alt="AI-generated MVP screen 1"
+               class="cs-zoomable" />
+        </div>
+        <p class="cs-img-caption">MVP — Input fields for the information intake form</p>
       </div>
-      <span class="cs-placeholder-label">Under Construction</span>
-      <p class="cs-placeholder-title">Case study in progress</p>
-      <p class="cs-placeholder-desc">This page is being written up. The full case study will cover the usability testing methodology, participant findings, and design recommendations produced for the Aptatio Analytics platform.</p>
-      <span class="cs-placeholder-tag">Coming Soon</span>
+      <div class="cs-two-col-item">
+        <div class="cs-img-box">
+          <img src="../photos/AptatioAnalytics/MVP2.png"
+               alt="AI-generated MVP screen 2"
+               class="cs-zoomable" />
+        </div>
+        <p class="cs-img-caption">MVP — Client/physician optimization match score</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         02 - BUILDING THE BRAND
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="building-the-brand">
+      <h2>02 - Building the Brand</h2>
+    </div>
+
+    <p class="cs-body-text">The first step was the branding. The team wanted an identity that reflected their goals and would hold up across professional contexts. I started by developing hand sketches exploring different directions and shared them with the team for feedback. They picked one direction, and from there we iterated together until we landed on a final mark that everyone felt confident in.</p>
+
+    <p class="cs-body-text">For the color, I chose a light blue to reflect trust and professionalism, two values that matter deeply in the healthcare space. The icon is shaped like a heartbeat pulse of the kind you would see on a patient monitor, making the connection to healthcare work immediately legible without being heavy-handed. I built out variations for different use cases so the brand could work whether it appeared on a dashboard header, a presentation deck, or a stakeholder email.</p>
+
+    <div class="cs-insight">
+      <p>It was important to me that the logo feel clean but also approachable. While the company is data-driven, it should still feel personable and human so that the healthcare professionals using it can trust it.</p>
+    </div>
+
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/AptatioAnalytics/Logo.jpg"
+             alt="Aptatio Analytics logo"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Primary logo</p>
+    </div>
+
+    <div class="cs-two-col">
+      <div class="cs-two-col-item">
+        <div class="cs-img-box" style="background: #5161AC;">
+          <img src="../photos/AptatioAnalytics/Aptatio3.jpg"
+               alt="Aptatio Analytics logo variations"
+               class="cs-zoomable" />
+        </div>
+        <p class="cs-img-caption">Logo variations</p>
+      </div>
+      <div class="cs-two-col-item">
+        <div class="cs-img-box">
+          <img src="../photos/AptatioAnalytics/DesignSystem.png"
+               alt="Aptatio Analytics design system"
+               class="cs-zoomable" />
+        </div>
+        <p class="cs-img-caption">Design system</p>
+      </div>
+    </div>
+
+    <!-- ════════════════════════
+         03 - DESIGN APPLICATIONS
+    ════════════════════════ -->
+    <div class="cs-section-heading" id="design-applications">
+      <h2>03 - Design Applications</h2>
+    </div>
+
+    <p class="cs-body-text">With the brand established, I was asked to create email templates for stakeholder communications. The team needed a format they could reuse for outreach and updates without having to design from scratch each time. The goal was something that carried the brand clearly, was easy to read at a glance, and kept the focus on the content rather than the design itself.</p>
+
+    <p class="cs-body-text">I kept the layout minimal: a clear header with the logo, a single-column body area with generous spacing, and a consistent footer. The typography and color usage followed the design system so that every email would feel like it came from the same place as the product.</p>
+
+    <div class="cs-img-full">
+      <div class="cs-img-box">
+        <img src="../photos/AptatioAnalytics/Frame 4 (1).png"
+             alt="Aptatio Analytics email template overview"
+             class="cs-zoomable" />
+      </div>
+      <p class="cs-img-caption">Email template overview</p>
+    </div>
+
+    <p class="cs-body-text">I also redesigned the intake form website. One of the clearest problems from the audit was that users were dropped directly into the form with no orientation. I addressed this by adding a dashboard as a proper entry point, giving users a sense of where they were and what they were doing before any input was required. From there I focused on reducing input errors and improving clarity: a confirm step before submission, a visual representation of the patient/team match results so the output was easier to interpret, and larger input fields that were easier to interact with and less likely to cause mistakes.</p>
+
+    <div class="cs-scroll-wrap">
+      <div class="cs-scroll-track">
+
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/AptatioAnalytics/HIFi1.png"
+                 alt="Hi-fi redesign, dashboard"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Screen 1</p>
+            <p class="cs-scroll-title">Dashboard landing page</p>
+          </div>
+        </div>
+
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/AptatioAnalytics/HiFi2.png"
+                 alt="Hi-fi redesign, intake form"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Screen 2</p>
+            <p class="cs-scroll-title">Redesigned intake form with larger fields</p>
+          </div>
+        </div>
+
+        <div class="cs-scroll-card">
+          <div class="cs-scroll-img">
+            <img src="../photos/AptatioAnalytics/HiFi3.png"
+                 alt="Hi-fi redesign, match results"
+                 class="cs-zoomable" />
+          </div>
+          <div class="cs-scroll-caption">
+            <p class="cs-scroll-page">Screen 3</p>
+            <p class="cs-scroll-title">Visual match results with confirm interaction</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="img-modal-overlay" id="imgModal">
+    <div class="img-modal-inner">
+      <button class="img-modal-close" id="imgModalClose">&#10005;</button>
+      <img src="" alt="" id="imgModalImg" />
+    </div>
+  </div>
+
+  <script>
+    function updateActiveNav() {
+      const sections = ['initial-research', 'building-the-brand', 'design-applications'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
+    const modal      = document.getElementById('imgModal');
+    const modalImg   = document.getElementById('imgModalImg');
+    const modalClose = document.getElementById('imgModalClose');
+
+    function openLightbox(src, alt) {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.cs-zoomable').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+    modalClose.addEventListener('click', closeLightbox);
+    modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Hamburger menu
+    const burger  = document.getElementById('navHamburger');
+    const navMenu = document.querySelector('.nav-links');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        navMenu.classList.toggle('open');
+      });
+      navMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        });
+      });
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
+          burger.classList.remove('open');
+          navMenu.classList.remove('open');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
