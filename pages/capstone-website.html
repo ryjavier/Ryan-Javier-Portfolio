@@ -400,6 +400,67 @@
       color: var(--mid);
     }
 
+    /* ── BEFORE/AFTER COMPARE ── */
+    .cs-feature-block { margin: 44px 0; }
+    .cs-feature-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .cs-compare-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+      align-items: stretch;
+    }
+    .cs-compare-side {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+    }
+    .cs-compare-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 3px;
+      display: inline-block;
+      width: fit-content;
+      flex-shrink: 0;
+    }
+    .cs-compare-badge.before { background: #e8e8e4; color: #777; }
+    .cs-compare-badge.after  { background: rgba(74,139,140,0.13); color: var(--teal-dark); }
+    .cs-compare-img {
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+    }
+    .cs-compare-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    /* "after" column fills the row height set by the "before" column */
+    .cs-compare-side:last-child {
+      height: 100%;
+    }
+    .cs-compare-side:last-child .cs-compare-img {
+      flex: 1;
+      min-height: 0;
+    }
+    .cs-compare-side:last-child .cs-compare-img img {
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
     /* ── BACK LINK ── */
     .cs-back {
       display: inline-flex;
@@ -447,6 +508,7 @@
       .cs-lofi-pair { grid-template-columns: 1fr; }
       .cs-stats-row { grid-template-columns: 1fr; }
       .cs-scroll-card { flex: 0 0 260px; }
+      .cs-compare-pair { grid-template-columns: 1fr; }
       .nav-hamburger { display: flex; }
       .nav-links {
         display: none;
@@ -541,11 +603,6 @@
   <nav class="navbar">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
-      <div class="nav-links">
-        <a href="#old-site"      class="nav-link" data-section="old-site">Old Site</a>
-        <a href="#wireframes"    class="nav-link" data-section="wireframes">Wireframes</a>
-        <a href="#final-design"  class="nav-link" data-section="final-design">Final Design</a>
-      </div>
       <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -614,91 +671,8 @@
       </div>
     </div>
 
-    <!-- ════════════════════════
-         01 - OLD SITE
-    ════════════════════════ -->
-    <div class="cs-section-heading" id="old-site">
-      <h2>01 - Old Site</h2>
-    </div>
-
-    <p class="cs-body-text">The original site at lehighcomputersciencecapstone.com carried the right content but presented it in a way that made navigation unintuitive. Scroll through the pages below to see the specific friction points that drove the redesign.</p>
-
-    <div class="cs-scroll-wrap">
-      <div class="cs-scroll-track">
-
-        <!-- Card 1: Home -->
-        <div class="cs-scroll-card">
-          <div class="cs-scroll-img">
-            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_index.html.png"
-                 alt="Old landing page"
-                 class="cs-zoomable" />
-          </div>
-          <div class="cs-scroll-caption">
-            <p class="cs-scroll-page">Home</p>
-            <p class="cs-scroll-title">Faculty hidden behind individual click-through cards</p>
-            <p class="cs-scroll-desc">Each faculty member was tucked behind its own card that required a separate click to expand. Users who wanted to browse the full faculty list had to click through every card individually, a slow and tedious process that obscured basic information that should have been visible at a glance.</p>
-          </div>
-        </div>
-
-        <!-- Card 2: Past Projects -->
-        <div class="cs-scroll-card">
-          <div class="cs-scroll-img">
-            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_past_projects.html.png"
-                 alt="Old past projects page"
-                 class="cs-zoomable" />
-          </div>
-          <div class="cs-scroll-caption">
-            <p class="cs-scroll-page">Past Projects</p>
-            <p class="cs-scroll-title">Plain links with no context, no way to browse</p>
-            <p class="cs-scroll-desc">Projects appear as bare hyperlinks grouped loosely by year. There are no descriptions, no sponsor names, and no project categories, so a visitor has no idea what any project involved until they click through. With no search or filter controls, finding something relevant means scrolling through years of undifferentiated entries.</p>
-          </div>
-        </div>
-
-        <!-- Card 3: Sponsors -->
-        <div class="cs-scroll-card">
-          <div class="cs-scroll-img">
-            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_sponsor.html.png"
-                 alt="Old sponsor page"
-                 class="cs-zoomable" />
-          </div>
-          <div class="cs-scroll-caption">
-            <p class="cs-scroll-page">Sponsors</p>
-            <p class="cs-scroll-title">Hidden accordion with no visual affordance</p>
-            <p class="cs-scroll-desc">The FAQ section below the sponsor pitch is technically interactive, but nothing signals that. There is no chevron, no button, and no hover change, so the collapsed headings look identical to static text. Users who don't already know to click them will never discover the content inside.</p>
-          </div>
-        </div>
-
-        <!-- Card 4: Students -->
-        <div class="cs-scroll-card">
-          <div class="cs-scroll-img">
-            <img src="../photos/CapstoneWebsite/lehighcomputersciencecapstone.com_student.html.png"
-                 alt="Old student page"
-                 class="cs-zoomable" />
-          </div>
-          <div class="cs-scroll-caption">
-            <p class="cs-scroll-page">Students</p>
-            <p class="cs-scroll-title">A structural copy of the sponsor page</p>
-            <p class="cs-scroll-desc">The Students and Sponsors pages use the same layout, the same content density, and nearly the same language. A visitor switching between them would struggle to identify what applies to them. Most of the student-facing information could live on the homepage or in a single consolidated About section, eliminating the redundancy entirely.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="cs-insight">
-      <p>The site had the right information but none of the right structure. The redesign opportunity was less about what to say and entirely about how to organize and present it.</p>
-    </div>
-
-    <!-- ════════════════════════
-         02 - WIREFRAMES
-    ════════════════════════ -->
-    <div class="cs-section-heading" id="wireframes">
-      <h2>02 - Wireframes</h2>
-    </div>
-
     <p class="cs-body-text">Before moving into Figma, the layout was mapped through thumbnail sketches to establish the information architecture. Key decisions made at this stage: a persistent top navigation separating About, Projects, Sponsors, and FAQs; a hero section leading with program identity; and a card-based grid for projects to enable browsing and filtering.</p>
 
-    <!-- Wireframe sketch -->
     <div class="cs-research-pair">
       <div class="cs-research-img">
         <img src="../photos/CapstoneWebsite/WIreframeSketch.png"
@@ -712,88 +686,153 @@
       </div>
     </div>
 
-    <!-- ════════════════════════
-         03 - FINAL DESIGN
-    ════════════════════════ -->
-    <div class="cs-section-heading" id="final-design">
-      <h2>03 - Final Design</h2>
+    <p class="cs-body-text">Every screen in the redesign traces back to a specific friction point from the old site. The comparisons below show exactly what changed and why.</p>
+
+    <!-- ── HERO LANDING ── -->
+    <div class="cs-feature-block">
+      <p class="cs-feature-label">Hero Landing</p>
+      <div class="cs-compare-pair">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge before">Before</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/OldHeroLanding.png"
+                 alt="Old hero landing page"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge after">After</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/LandingPage.png"
+                 alt="Redesigned landing page"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+      </div>
+      <p class="cs-body-text">The old landing page carried an outdated visual style and a navbar that wasn't immediately clear to navigate. The photography choice didn't reinforce the program's identity, and the navigation assumed familiarity rather than orienting first-time visitors.<br><br>The redesign addresses this directly: a cleaner navbar assumes its users are students first, structuring the experience around their primary goals. The homepage opens with a full campus photo, matching the visual tone visitors already expect from academic department sites. It establishes the program's identity before they read a single word.</p>
+      <div class="cs-insight">
+        <p>A polished front page wasn't just an aesthetic goal. The site's primary audience is prospective students, so the homepage needed to make the program feel worth joining, not just worth reading about.</p>
+      </div>
     </div>
 
-    <p class="cs-body-text">Every screen in the redesign traces back to a specific friction point from the old site. The decisions below are organized by the problem they solve.</p>
-
-    <!-- Fix 1: LandingPage + ProjectsButton + Faculty stacked left, text right -->
-    <div class="cs-lofi-pair">
-      <div class="cs-lofi-images">
-        <div class="cs-lofi-box">
-          <img src="../photos/CapstoneWebsite/LandingPage.png"
-               alt="Redesigned landing page"
-               class="cs-zoomable" />
+    <!-- ── FACULTY ── -->
+    <div class="cs-feature-block">
+      <p class="cs-feature-label">Faculty</p>
+      <div class="cs-compare-pair">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge before">Before</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/OldFaculty.png"
+                 alt="Old faculty section"
+                 class="cs-zoomable" />
+          </div>
         </div>
-        <div class="cs-lofi-box">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge after">After</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/Faculty.png"
+                 alt="Redesigned faculty section"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+      </div>
+      <p class="cs-body-text">The old faculty section forced users to click through each person one at a time, taking up significant space while hiding the information visitors actually needed. The yellow card styling added visual noise without adding clarity.<br><br>The redesign shows them all at once with no clicking required. It's cleaner: the yellow is gone, and all faculty names, titles, and contact details are now displayed as a plain visible list. The old site tucked each person behind a card that required its own click to open, turning a simple browse into a repetitive multi-step task.</p>
+    </div>
+
+    <!-- ── PROJECTS ── -->
+    <div class="cs-feature-block">
+      <p class="cs-feature-label">Projects</p>
+      <div class="cs-compare-pair">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge before">Before</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/OldPastProjects.png"
+                 alt="Old past projects page"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge after">After</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/ProjectSearch.png"
+                 alt="Redesigned projects page with search and filter"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+      </div>
+      <p class="cs-body-text">The old projects page took up too much space, had no way to browse, and didn't distinguish between past and current projects. My redesign fixes that with a search bar and tags to easily search through. Each project now appears as a card showing the team name, sponsor, year, and project category. A visitor can tell at a glance whether a project is relevant to them, with no clicking required. The page also introduces search and filter controls so users can narrow the archive by sponsor, topic, or year without scrolling through everything.</p>
+
+      <div class="cs-insight">
+        <p>Coming into this project with no prior knowledge of the capstone program, I found myself wanting a way to browse projects without reading through everything. That personal frustration became the direct prompt for building the search function.</p>
+      </div>
+
+      <!-- Add-on: Quick Access Buttons -->
+      <div class="cs-research-pair" style="margin-top: 28px;">
+        <div class="cs-research-img">
           <img src="../photos/CapstoneWebsite/ProjectsButton.png"
-               alt="Projects CTA button on landing page"
+               alt="Quick access buttons on landing page"
                class="cs-zoomable" />
         </div>
-        <div class="cs-lofi-box">
-          <img src="../photos/CapstoneWebsite/Faculty.png"
-               alt="Redesigned faculty section showing all members inline"
-               class="cs-zoomable" />
+        <div class="cs-research-text">
+          <span class="cs-research-label">Add-on · Quick Access Buttons</span>
+          <p class="cs-research-title">Jump to what you need, immediately</p>
+          <p class="cs-research-desc">Prominent buttons sit directly below the hero so any visitor, whether a student, sponsor, or recruiter, can jump straight to the content they came for without scrolling through the page first.</p>
         </div>
       </div>
-      <div class="cs-lofi-text">
-        <span class="cs-research-label">Fixes · Home Page</span>
-        <p class="cs-research-title">A landing page that orients, then directs</p>
+    </div>
 
-        <p class="cs-research-desc" style="margin-top:14px;"><strong>Hero image</strong><br>
-        The homepage opens with a full campus photo, matching the visual tone visitors already expect from academic department sites. It establishes the program's identity before they read a single word.</p>
-
-        <p class="cs-research-desc" style="margin-top:12px;"><strong>Quick access buttons</strong><br>
-        Prominent buttons sit directly below the hero so any visitor, whether a student, sponsor, or recruiter, can jump straight to the content they came for without scrolling through the page first.</p>
-
-        <p class="cs-research-desc" style="margin-top:12px;"><strong>Faculty section</strong><br>
-        All faculty names, titles, and contact details are now displayed as a plain visible list. The old site tucked each person behind a card that required its own click to open, turning a simple browse into a repetitive multi-step task.</p>
+    <!-- ── FAQs ── -->
+    <div class="cs-feature-block">
+      <p class="cs-feature-label">FAQs</p>
+      <div class="cs-compare-pair">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge before">Before</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/OldFAQs.png"
+                 alt="Old FAQs page"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge after">After</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/FAQs.png"
+                 alt="Redesigned FAQs page"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+      </div>
+      <p class="cs-body-text">The old FAQ had no affordances that told users they could click it. No chevron, no button and a basic hover effect that poorly indicates that the collapsed headings are interactive. Users who don't already know to click them will never discover the content inside.<br><br>Every accordion item now carries a chevron that rotates on expand, giving users a clear visual signal that more content is inside. The sponsor pitch and the FAQ list are separated into distinct sections so users can find what they came for without reading through content aimed at a different audience. Contact details are pulled to the top rather than buried at the bottom.</p>
+      <div class="cs-insight">
+        <p>The accordion pattern wasn't a stretch, it was the obvious choice. It matches a familiar interaction model users already understand, and the color choices were pulled directly from Lehigh's branding so the design feels native to the institution.</p>
       </div>
     </div>
 
-    <!-- Fix 2: Projects page → plain links with no context -->
-    <div class="cs-research-pair flip">
-      <div class="cs-research-img">
-        <img src="../photos/CapstoneWebsite/ProjectsSearch.png"
-             alt="Project search and filter in use"
-             class="cs-zoomable" />
+    <!-- ── TIMELINE ── -->
+    <div class="cs-feature-block">
+      <p class="cs-feature-label">Timeline</p>
+      <div class="cs-compare-pair">
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge before">Before</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/OldTimeline.png"
+                 alt="Old timeline"
+                 class="cs-zoomable" />
+          </div>
+        </div>
+        <div class="cs-compare-side">
+          <span class="cs-compare-badge after">After</span>
+          <div class="cs-compare-img">
+            <img src="../photos/CapstoneWebsite/Timeline.png"
+                 alt="Redesigned timeline"
+                 class="cs-zoomable" />
+          </div>
+        </div>
       </div>
-      <div class="cs-research-text">
-        <span class="cs-research-label">Fixes · Past Projects</span>
-        <p class="cs-research-title">Card grid with metadata replaces bare link lists</p>
-        <p class="cs-research-desc">Each project now appears as a card showing the team name, sponsor, year, and project category. A visitor can tell at a glance whether a project is relevant to them, with no clicking required. The page also introduces search and filter controls so users can narrow the archive by sponsor, topic, or year without scrolling through everything.</p>
-      </div>
+      <p class="cs-body-text">The Students and Sponsors pages used the same layout, the same content density, and nearly the same language. A visitor switching between them would struggle to identify what applied to them. The timeline also wasn't effective at conveying information: the structure didn't guide users through the program sequence in a way that was easy to follow. My redesign addresses these directly.</p>
     </div>
 
-    <!-- Projects page full width -->
-    <div class="cs-img-full">
-      <div class="cs-img-box">
-        <img src="../photos/CapstoneWebsite/ProjectsPage.png"
-             alt="Redesigned projects page"
-             class="cs-zoomable" />
-      </div>
-      <p class="cs-img-caption">Each project card surfaces team name, sponsor, year, and CSE area at a glance</p>
-    </div>
-
-    <!-- Fix 3: FAQs → hidden accordion -->
-    <div class="cs-research-pair">
-      <div class="cs-research-img">
-        <img src="../photos/CapstoneWebsite/FAQs.png"
-             alt="Redesigned FAQs page"
-             class="cs-zoomable" />
-      </div>
-      <div class="cs-research-text">
-        <span class="cs-research-label">Fixes · Sponsors &amp; FAQs</span>
-        <p class="cs-research-title">Visible affordance makes the accordion discoverable</p>
-        <p class="cs-research-desc">Every accordion item now carries a chevron that rotates on expand, giving users a clear visual signal that more content is inside. The sponsor pitch and the FAQ list are separated into distinct sections so users can find what they came for without reading through content aimed at a different audience. Contact details are pulled to the top rather than buried at the bottom.</p>
-      </div>
-    </div>
-
-    <!-- Fix 4: Students/Sponsors mirror problem — text only -->
+    <!-- Fixes · Students & Sponsors -->
     <div class="cs-insight">
       <p><strong>Fixes · Students &amp; Sponsors</strong><br>The two pages were structural twins, so the fix was architectural rather than visual. Student-relevant content, including program requirements, timeline, and team formation, was consolidated into the homepage About section where it reaches the right audience without needing its own page. The Sponsors page was then scoped entirely to the industry pitch and partnership details, giving each audience a destination that feels written specifically for them.</p>
     </div>
@@ -806,7 +845,7 @@
       </div>
       <div class="cs-stat-card">
         <span class="cs-stat-number">1</span>
-        <span class="cs-stat-label">unified visual language replacing years of inconsistent additions</span>
+        <span class="cs-stat-label">unified visual language replacing years of inconsistent additions and the wireframe section</span>
       </div>
     </div>
 
@@ -821,20 +860,6 @@
   </div>
 
   <script>
-    function updateActiveNav() {
-      const sections = ['old-site', 'wireframes', 'final-design'];
-      let current = '';
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 80) current = id;
-      });
-      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
-        link.classList.toggle('active', link.dataset.section === current);
-      });
-    }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
-
     const modal      = document.getElementById('imgModal');
     const modalImg   = document.getElementById('imgModalImg');
     const modalClose = document.getElementById('imgModalClose');
@@ -879,6 +904,10 @@
       });
     }
   </script>
+
+  <div style="text-align:center; padding: 2rem 0 3rem; font-family: 'IBM Plex Sans', sans-serif;">
+    <a href="#" style="color: #ED1C24; text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #ED1C24; padding-bottom: 2px;">↑ Back to Top</a>
+  </div>
 
 </body>
 </html>
