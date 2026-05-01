@@ -361,16 +361,20 @@
      ABOUT
   =========================== */
   .about-body {
-    display: grid;
-    grid-template-columns: 1fr 1px 1fr;
+    display: flex;
+    flex-direction: column;
     padding: 28px 0;
   }
-  .about-left  { padding: 0 28px; }
-  .about-right { padding: 0 28px; display: flex; flex-direction: column; gap: 18px; }
-  .about-divider { background: var(--border); }
-  
+  .about-top-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 28px 28px 24px;
+  }
+  .about-portrait-wrap { flex-shrink: 0; }
   .about-portrait {
-    width: 100%;
+    width: 180px;
     height: 180px;
     border-radius: 10px;
     object-fit: cover;
@@ -378,19 +382,26 @@
     border: 3px solid var(--teal-light);
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
     display: block;
-    margin-bottom: 20px;
   }
+  .about-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 40px;
+    align-content: start;
+  }
+  .about-divider-h { height: 1px; background: var(--border); margin: 0 28px; }
+  .about-blurb { padding: 24px 28px 28px; }
 
-  .about-left h3 {
+  .about-blurb h3 {
     font-family: var(--font);
     font-size: 28px;
     font-weight: 300;
     line-height: 1.4;
     margin-bottom: 16px;
   }
-  .about-left h3 strong { font-weight: 500; }
-  
-  .about-left p {
+  .about-blurb h3 strong { font-weight: 500; }
+
+  .about-blurb p {
     font-size: 13px;
     line-height: 1.75;
     color: var(--mid);
@@ -1128,11 +1139,12 @@
     .nav-inner { padding: 10px 16px; }
     .nav-links  { gap: 20px; }
 
-    /* About: stack columns vertically */
-    .about-body { grid-template-columns: 1fr; }
-    .about-divider { display: none; }
-    .about-left  { padding: 20px 20px 8px; }
-    .about-right { padding: 8px 20px 24px; }
+    /* About: stack on small screens */
+    .about-top-row { grid-template-columns: 1fr; padding: 20px 20px 20px; }
+    .about-portrait { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+    .about-info-grid { grid-template-columns: 1fr; }
+    .about-divider-h { margin: 0 20px; }
+    .about-blurb { padding: 20px 20px 24px; }
 
     /* Work: hide purely decorative bg lines / ghost stops */
     .timeline-bg-svg,
@@ -1221,7 +1233,7 @@
     /* New mobile layout widest row is ~547px.
        zoom 0.80 → ~438px, fits inside 480px - 32px = 448px available. */
     .flipboard-wrapper { zoom: 0.80; }
-    .about-left h3 { font-size: 22px; }
+    .about-blurb h3 { font-size: 22px; }
     .nav-links { gap: 16px; }
   }
 
