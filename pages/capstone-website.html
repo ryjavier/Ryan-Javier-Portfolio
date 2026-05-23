@@ -240,12 +240,24 @@
       background: rgba(237,28,36,0.04);
       border-radius: 0 6px 6px 0;
     }
-    .cs-insight p {
-      font-size: 15px;
-      font-weight: 500;
+    .cs-insight-title {
+      font-size: 16px;
+      font-weight: 700;
       color: var(--dark);
-      line-height: 1.6;
-      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .cs-insight-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.75;
+    }
+
+    /* ── IN-PAGE SECTION NAV ── */
+    .cs-feature-block,
+    .cs-page-section {
+      scroll-margin-top: 80px;
     }
 
     /* ── RESEARCH PAIR: image one side, text the other ── */
@@ -603,6 +615,14 @@
   <nav class="navbar">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
+      <div class="nav-links">
+        <a href="#initial-sketches" class="nav-link" data-section="initial-sketches">Initial Sketches</a>
+        <a href="#hero-landing" class="nav-link" data-section="hero-landing">Hero Landing</a>
+        <a href="#faculty" class="nav-link" data-section="faculty">Faculty</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#faqs" class="nav-link" data-section="faqs">FAQs</a>
+        <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
+      </div>
       <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -671,6 +691,7 @@
       </div>
     </div>
 
+    <section id="initial-sketches" class="cs-page-section">
     <p class="cs-body-text">Before moving into Figma, the layout was mapped through thumbnail sketches to establish the information architecture. Key decisions made at this stage: a persistent top navigation separating About, Projects, Sponsors, and FAQs; a hero section leading with program identity; and a card-based grid for projects to enable browsing and filtering.</p>
 
     <div class="cs-research-pair">
@@ -686,10 +707,16 @@
       </div>
     </div>
 
+    <div class="cs-insight">
+      <p class="cs-insight-title">Something Borrowed, Something New</p>
+      <p class="cs-insight-desc">The first thing to address was to make sure the website felt new and not like a static HTML site. The next step was to make it feel a part of the Lehigh University infrastructure rather than a separate entity.</p>
+    </div>
+    </section>
+
     <p class="cs-body-text">Every screen in the redesign traces back to a specific friction point from the old site. The comparisons below show exactly what changed and why.</p>
 
     <!-- ── HERO LANDING ── -->
-    <div class="cs-feature-block">
+    <div class="cs-feature-block" id="hero-landing">
       <p class="cs-feature-label">Hero Landing</p>
       <div class="cs-compare-pair">
         <div class="cs-compare-side">
@@ -710,13 +737,10 @@
         </div>
       </div>
       <p class="cs-body-text">The old landing page carried an outdated visual style and a navbar that wasn't immediately clear to navigate. The photography choice didn't reinforce the program's identity, and the navigation assumed familiarity rather than orienting first-time visitors.<br><br>The redesign addresses this directly: a cleaner navbar assumes its users are students first, structuring the experience around their primary goals. The homepage opens with a full campus photo, matching the visual tone visitors already expect from academic department sites. It establishes the program's identity before they read a single word.</p>
-      <div class="cs-insight">
-        <p>A polished front page wasn't just an aesthetic goal. The site's primary audience is prospective students, so the homepage needed to make the program feel worth joining, not just worth reading about.</p>
-      </div>
     </div>
 
     <!-- ── FACULTY ── -->
-    <div class="cs-feature-block">
+    <div class="cs-feature-block" id="faculty">
       <p class="cs-feature-label">Faculty</p>
       <div class="cs-compare-pair">
         <div class="cs-compare-side">
@@ -740,7 +764,7 @@
     </div>
 
     <!-- ── PROJECTS ── -->
-    <div class="cs-feature-block">
+    <div class="cs-feature-block" id="projects">
       <p class="cs-feature-label">Projects</p>
       <div class="cs-compare-pair">
         <div class="cs-compare-side">
@@ -763,7 +787,8 @@
       <p class="cs-body-text">The old projects page took up too much space, had no way to browse, and didn't distinguish between past and current projects. My redesign fixes that with a search bar and tags to easily search through. Each project now appears as a card showing the team name, sponsor, year, and project category. A visitor can tell at a glance whether a project is relevant to them, with no clicking required. The page also introduces search and filter controls so users can narrow the archive by sponsor, topic, or year without scrolling through everything.</p>
 
       <div class="cs-insight">
-        <p>Coming into this project with no prior knowledge of the capstone program, I found myself wanting a way to browse projects without reading through everything. That personal frustration became the direct prompt for building the search function.</p>
+        <p class="cs-insight-title">Letting My Own Curiosity Lead Design</p>
+        <p class="cs-insight-desc">Coming into this project with no prior knowledge of the capstone program, I found myself wanting a way to browse projects without reading through everything. That personal frustration became the direct prompt for building the search function.</p>
       </div>
 
       <!-- Add-on: Quick Access Buttons -->
@@ -782,7 +807,7 @@
     </div>
 
     <!-- ── FAQs ── -->
-    <div class="cs-feature-block">
+    <div class="cs-feature-block" id="faqs">
       <p class="cs-feature-label">FAQs</p>
       <div class="cs-compare-pair">
         <div class="cs-compare-side">
@@ -804,12 +829,13 @@
       </div>
       <p class="cs-body-text">The old FAQ had no affordances that told users they could click it. No chevron, no button and a basic hover effect that poorly indicates that the collapsed headings are interactive. Users who don't already know to click them will never discover the content inside.<br><br>Every accordion item now carries a chevron that rotates on expand, giving users a clear visual signal that more content is inside. The sponsor pitch and the FAQ list are separated into distinct sections so users can find what they came for without reading through content aimed at a different audience. Contact details are pulled to the top rather than buried at the bottom.</p>
       <div class="cs-insight">
-        <p>The accordion pattern wasn't a stretch, it was the obvious choice. It matches a familiar interaction model users already understand, and the color choices were pulled directly from Lehigh's branding so the design feels native to the institution.</p>
+        <p class="cs-insight-title">A Familiar Solution</p>
+        <p class="cs-insight-desc">The accordion pattern wasn't a stretch, it was the obvious choice. It matches a familiar interaction model users already understand, and the color choices were pulled directly from Lehigh's branding so the design feels native to the institution.</p>
       </div>
     </div>
 
     <!-- ── TIMELINE ── -->
-    <div class="cs-feature-block">
+    <div class="cs-feature-block" id="timeline">
       <p class="cs-feature-label">Timeline</p>
       <div class="cs-compare-pair">
         <div class="cs-compare-side">
@@ -830,11 +856,11 @@
         </div>
       </div>
       <p class="cs-body-text">The Students and Sponsors pages used the same layout, the same content density, and nearly the same language. A visitor switching between them would struggle to identify what applied to them. The timeline also wasn't effective at conveying information: the structure didn't guide users through the program sequence in a way that was easy to follow. My redesign addresses these directly.</p>
-    </div>
 
-    <!-- Fixes · Students & Sponsors -->
-    <div class="cs-insight">
-      <p><strong>Fixes · Students &amp; Sponsors</strong><br>The two pages were structural twins, so the fix was architectural rather than visual. Student-relevant content, including program requirements, timeline, and team formation, was consolidated into the homepage About section where it reaches the right audience without needing its own page. The Sponsors page was then scoped entirely to the industry pitch and partnership details, giving each audience a destination that feels written specifically for them.</p>
+      <div class="cs-insight">
+        <p class="cs-insight-title">One Site, Two Audiences</p>
+        <p class="cs-insight-desc">The two pages were structural twins, so the fix was architectural rather than visual. Student-relevant content, including program requirements, timeline, and team formation, was consolidated into the homepage About section where it reaches the right audience without needing its own page. The Sponsors page was then scoped entirely to the industry pitch and partnership details, giving each audience a destination that feels written specifically for them.</p>
+      </div>
     </div>
 
     <!-- Stats -->
@@ -860,6 +886,21 @@
   </div>
 
   <script>
+    // ── SCROLL SPY ──────────────────────────────────────
+    function updateActiveNav() {
+      const sections = ['initial-sketches', 'hero-landing', 'faculty', 'projects', 'faqs', 'timeline'];
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 80) current = id;
+      });
+      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === current);
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
+
     const modal      = document.getElementById('imgModal');
     const modalImg   = document.getElementById('imgModalImg');
     const modalClose = document.getElementById('imgModalClose');

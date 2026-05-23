@@ -363,14 +363,13 @@
   .about-body {
     display: flex;
     flex-direction: column;
-    padding: 28px 0;
   }
   .about-top-row {
     display: grid;
     grid-template-columns: 180px 1fr;
     gap: 32px;
     align-items: start;
-    padding: 28px 28px 24px;
+    padding: 20px 28px 24px;
   }
   .about-portrait-wrap { flex-shrink: 0; }
   .about-portrait {
@@ -1140,7 +1139,7 @@
     .nav-links  { gap: 20px; }
 
     /* About: stack on small screens */
-    .about-top-row { grid-template-columns: 1fr; padding: 20px 20px 20px; }
+    .about-top-row { grid-template-columns: 1fr; padding: 16px 20px 20px; }
     .about-portrait { width: 100%; height: auto; aspect-ratio: 1 / 1; }
     .about-info-grid { grid-template-columns: 1fr; }
     .about-divider-h { margin: 0 20px; }

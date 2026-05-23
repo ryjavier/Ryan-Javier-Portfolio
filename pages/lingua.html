@@ -267,12 +267,18 @@
       background: rgba(237,28,36,0.04);
       border-radius: 0 6px 6px 0;
     }
-    .cs-insight p {
-      font-size: 15px;
-      font-weight: 500;
+    .cs-insight-title {
+      font-size: 16px;
+      font-weight: 700;
       color: var(--dark);
-      line-height: 1.6;
-      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .cs-insight-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.75;
     }
 
     /* ── RESEARCH PAIR: image one side, text the other ── */
@@ -689,6 +695,11 @@
       </div>
     </div>
 
+    <div class="cs-insight">
+      <p class="cs-insight-title">Getting in the heads of users</p>
+      <p class="cs-insight-desc">I needed to ensure the app was rooted in real issues. Qualitative interviews with immigrants and children of immigrants helped lay the foundation, their experiences surfaced the pain points that informed every decision that followed.</p>
+    </div>
+
     <!-- Affinity Diagram -->
     <div class="cs-research-pair">
       <div class="cs-research-img">
@@ -701,10 +712,6 @@
         <p class="cs-research-title">Synthesizing patterns across participants</p>
         <p class="cs-research-desc">Interview responses were organized into affinity diagrams to surface patterns across participants and determine which needs were most widely shared. Grouping the data revealed clear categories around emotional strain, vocabulary gaps, and situation-specific demands. From those categories, I ranked potential features by how directly they addressed the core pain points and how feasible they were within the project scope.</p>
       </div>
-    </div>
-
-    <div class="cs-insight">
-      <p>Several interviewees brought up features like real-time AI translation or direct integration with tools such as Google Translate. While these suggestions were meaningful and worth noting, they fell outside the scope of this project. They are documented here as strong candidates for future development.</p>
     </div>
 
     <!-- ════════════════════════
@@ -778,7 +785,8 @@
     </div>
 
     <div class="cs-insight">
-      <p>Sketching the wireframe surfaced questions about navigation depth, how to present expert versus community-created content, and how many options to give users within each learning mode. Resolving these early kept them from compounding into more expensive problems during high-fidelity production.</p>
+      <p class="cs-insight-title">One sketch, a thousand decisions</p>
+      <p class="cs-insight-desc">Sketching the wireframe surfaced questions about navigation depth, how to present expert versus community-created content, and how many options to give users within each learning mode. Resolving these early kept them from compounding into more expensive problems during high-fidelity production.</p>
     </div>
 
     <!-- Lofi 1 + 2 -->
@@ -845,7 +853,8 @@
     <p class="cs-body-text">A group of participants, including some who had been interviewed during the ideation phase, completed a structured task flow using the lo-fi prototype. Tasks were chosen to reflect realistic use cases: finding a lesson, reviewing a set of flashcards, creating a new card set, and moving between sections of the app. After completing the tasks, participants shared both verbal feedback and written responses. The results pointed clearly to two recurring problem areas: the navigation bar and the search function. Both emerged as consistent friction points across the majority of participants.</p>
 
     <div class="cs-insight">
-      <p>The most important finding was that users did not understand what the icons in the navigation bar represented, and labels like "make" failed to give them enough context to identify the section's purpose. Clearer labels and more familiar iconography became the top design priority for the next phase.</p>
+      <p class="cs-insight-title">How I knew where to draw the line</p>
+      <p class="cs-insight-desc">User testing revealed that participants couldn't decipher what the navigation icons represented, and labels like "Make" didn't align with their mental schemas. Clearer labels and more familiar iconography became the top design priority for the next phase.</p>
     </div>
 
     <!-- ════════════════════════

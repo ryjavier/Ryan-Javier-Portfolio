@@ -240,12 +240,18 @@
       background: rgba(237,28,36,0.04);
       border-radius: 0 6px 6px 0;
     }
-    .cs-insight p {
-      font-size: 15px;
-      font-weight: 500;
+    .cs-insight-title {
+      font-size: 16px;
+      font-weight: 700;
       color: var(--dark);
-      line-height: 1.6;
-      font-style: italic;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .cs-insight-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--mid);
+      line-height: 1.75;
     }
 
     /* ── RESEARCH PAIR: image one side, text the other ── */
@@ -581,7 +587,8 @@
     </div>
 
     <div class="cs-insight">
-      <p>84% of students rated the course enrolment process as "Difficult" or "Very Difficult" on their first attempt - a clear signal that the problem was worth solving from the ground up.</p>
+      <p class="cs-insight-title">A problem worth solving</p>
+      <p class="cs-insight-desc">It was important that we have numbers to establish that the issue was a real one experienced by users. After initial surveys, we found that 84% of students rated the course enrolment process as "Difficult" or "Very Difficult" on their first attempt.</p>
     </div>
 
     <!-- User Map: image left, text right -->
@@ -621,7 +628,8 @@
     </div>
 
     <div class="cs-insight">
-      <p>The sharpest frustration came during the Plan stage, when students had to cross-reference course times, professor options, and credit requirements across multiple disconnected screens with no live feedback.</p>
+      <p class="cs-insight-title">The Realest Fake Users</p>
+      <p class="cs-insight-desc">User personas and user journeys were created to ensure we had a good sense of our users. We included teachers, full-time, international, and exchange students in our personas to better understand the full variety of our intended audience.</p>
     </div>
 
     <!-- ════════════════════════
@@ -652,7 +660,8 @@
     </div>
 
     <div class="cs-insight">
-      <p>Users didn't like the collapsing schedule. Having it hidden by default felt like losing information they needed. We also asked them to rank what actually mattered when picking classes, and those priorities directly shaped what we chose to surface in the high fidelity.</p>
+      <p class="cs-insight-title">A/B Testing</p>
+      <p class="cs-insight-desc">We tested different variations of the prototype to understand what users preferred. One takeaway was that users didn't like the collapsing schedule. Having it hidden by default felt like losing information they needed. We also asked them to rank what actually mattered when picking classes, and those priorities directly shaped what we chose to surface in the high fidelity.</p>
     </div>
 
     <!-- ════════════════════════
@@ -665,7 +674,8 @@
     <p class="cs-body-text">The final design unifies course browsing, section selection, and schedule visualization into a single interface. Pillar and Term filters narrow the catalog up front. A shopping cart model lets students plan before committing. The schedule panel updates in real time as sections are selected, and any time conflicts surface immediately with a transparent notice modal rather than a silent block.</p>
 
     <div class="cs-insight">
-      <p>For color, we gave local Singaporean students three options and a neutral brown came out the clear winner. Green and red were brought in as secondary accents for action buttons, and the multi-window layout was kept fully open so students could see everything at once without bouncing between screens.</p>
+      <p class="cs-insight-title">Maybe I Was Wrong</p>
+      <p class="cs-insight-desc">Initially, I went with a blue theme for the app. However, after feedback and surveys where local Singaporean students chose from three options, a neutral brown came out the clear winner. I saw it as an alternative to the harsh blacks the previous solutions relied on, softer without losing the grounded, academic feel. Green and red were brought in as secondary accents for action buttons, and the multi-window layout was kept fully open so students could see everything at once without bouncing between screens.</p>
     </div>
 
     <!-- Schedule view: small thumbnail left, text right -->
@@ -725,7 +735,8 @@
     </div>
 
     <div class="cs-insight">
-      <p>The original system left 84% of students rating enrollment as difficult. After the redesign, 90% rated it easy or very easy. The shift was driven almost entirely by real-time schedule feedback and transparent conflict handling.</p>
+      <p class="cs-insight-title">Validating Our Solution</p>
+      <p class="cs-insight-desc">The original system left 84% of students rating enrollment as difficult. After the redesign, 90% rated it easy or very easy. The shift was driven almost entirely by real-time schedule feedback and transparent conflict handling.</p>
     </div>
 
   </main>
