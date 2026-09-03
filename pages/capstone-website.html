@@ -16,6 +16,7 @@
   <link rel="icon" type="image/x-icon" href="../photos/Redfavicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/case-study-nav.css" />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -158,9 +159,9 @@
 
     /* ── MAIN CONTENT ── */
     .case-study {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
+      flex: 1;
+      min-width: 0;
+      padding: 48px 0 80px;
     }
 
     /* ── HERO IMAGE ── */
@@ -618,52 +619,42 @@
     .img-modal-close:hover { background: var(--bg); }
   </style>
 </head>
-<body>
+<body class="case-study-page featured-work">
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+  <nav id="navbar" class="navbar site-navbar">
     <div class="nav-inner">
       <a href="../index.html" class="nav-logo">RYAN JAVIER</a>
-      <div class="nav-links">
-        <a href="#initial-sketches" class="nav-link" data-section="initial-sketches">Initial Sketches</a>
-        <a href="#hero-landing" class="nav-link" data-section="hero-landing">Hero Landing</a>
-        <a href="#faculty" class="nav-link" data-section="faculty">Faculty</a>
-        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-        <a href="#faqs" class="nav-link" data-section="faqs">FAQs</a>
-        <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
-      </div>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+      <button type="button" class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+      <div class="nav-links" id="navLinks">
+        <a href="../index.html" class="nav-link active">FEATURED WORK</a>
+        <a href="../about.html" class="nav-link">ABOUT</a>
+        <a href="../side-quests.html" class="nav-link">SIDE QUESTS</a>
+      </div>
     </div>
   </nav>
 
-  <!-- SUBWAY SIGN BAR -->
-  <div class="case-nav-bar">
-    <div class="case-nav-inner-wrap">
-      <div class="case-nav-top">
-        <div class="case-nav-arrows">
-          <a href="aptatic-analytics.html"><span class="case-nav-arrow-icon">&#8592;</span> Previous</a>
-        </div>
-        <div class="case-nav-arrows">
-          <a href="card-redesign.html">Next <span class="case-nav-arrow-icon">&#8594;</span></a>
-        </div>
-      </div>
-    </div>
-    <div class="case-nav-black-gap"></div>
-    <div class="case-nav-white-rule"></div>
-    <div class="case-nav-inner-wrap">
-      <div class="case-nav-bottom">
-        <div class="case-nav-title">Capstone Website</div>
-        <div class="case-nav-dot"></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- MAIN -->
-  <main class="case-study">
 
-    <a href="../index.html#work" class="cs-back">&#8592; Back to Work</a>
+
+  <div class="case-layout">
+    <aside class="section-nav" aria-label="Page sections">
+      <nav class="section-nav-inner">
+      <a href="#initial-sketches" class="section-bubble" data-section="initial-sketches">Initial Sketches</a>
+      <a href="#hero-landing" class="section-bubble" data-section="hero-landing">Hero Landing</a>
+      <a href="#faculty" class="section-bubble" data-section="faculty">Faculty</a>
+      <a href="#projects" class="section-bubble" data-section="projects">Projects</a>
+      <a href="#faqs" class="section-bubble" data-section="faqs">FAQs</a>
+      <a href="#timeline" class="section-bubble" data-section="timeline">Timeline</a>
+      </nav>
+    </aside>
+    <main class="case-study">
+    <header class="case-page-header">
+      <h1 class="case-page-title">Capstone Website</h1>
+    </header>
 
     <!-- HERO -->
     <div class="cs-hero">
@@ -671,9 +662,6 @@
            alt="Capstone Website redesign mockup on MacBook"
            class="cs-zoomable" />
     </div>
-
-    <h1 class="cs-page-title">Capstone Website</h1>
-
     <!-- META + ABOUT -->
     <div class="cs-meta-row">
       <div class="cs-meta">
@@ -884,8 +872,13 @@
       </div>
     </div>
 
-  </main>
+    <nav class="case-work-nav" aria-label="Project navigation">
+      <a href="aptatic-analytics.html" class="case-work-prev">&#8592; Previous Work</a>
+      <a href="card-redesign.html" class="case-work-next">Next Work &#8594;</a>
+    </nav>
 
+  </main>
+  </div>
   <!-- LIGHTBOX MODAL -->
   <div class="img-modal-overlay" id="imgModal">
     <div class="img-modal-inner">
@@ -896,20 +889,6 @@
 
   <script>
     // ── SCROLL SPY ──────────────────────────────────────
-    function updateActiveNav() {
-      const sections = ['initial-sketches', 'hero-landing', 'faculty', 'projects', 'faqs', 'timeline'];
-      let current = '';
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 80) current = id;
-      });
-      document.querySelectorAll('.nav-link[data-section]').forEach(link => {
-        link.classList.toggle('active', link.dataset.section === current);
-      });
-    }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    updateActiveNav();
-
     const modal      = document.getElementById('imgModal');
     const modalImg   = document.getElementById('imgModalImg');
     const modalClose = document.getElementById('imgModalClose');
@@ -931,29 +910,9 @@
     modalClose.addEventListener('click', closeLightbox);
     modal.addEventListener('click', e => { if (e.target === modal) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-    // Hamburger menu
-    const burger  = document.getElementById('navHamburger');
-    const navMenu = document.querySelector('.nav-links');
-    if (burger && navMenu) {
-      burger.addEventListener('click', () => {
-        burger.classList.toggle('open');
-        navMenu.classList.toggle('open');
-      });
-      navMenu.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          burger.classList.remove('open');
-          navMenu.classList.remove('open');
-        });
-      });
-      document.addEventListener('click', e => {
-        if (!burger.contains(e.target) && !navMenu.contains(e.target)) {
-          burger.classList.remove('open');
-          navMenu.classList.remove('open');
-        }
-      });
-    }
   </script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/case-study-nav.js"></script>
 
   <div style="text-align:center; padding: 2rem 0 3rem; font-family: 'IBM Plex Sans', sans-serif;">
     <a href="#" style="color: #ED1C24; text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #ED1C24; padding-bottom: 2px;">↑ Back to Top</a>

@@ -41,15 +41,67 @@
     justify-content: center;
     background: var(--bg);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
   }
   
+  /* Hero composition — sign centered, photos anchored to its sides */
+  .hero-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 24px clamp(12px, 3vw, 48px);
+  }
+
+  .hero-composition {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    --hero-photo-overlap: clamp(36px, 5vw, 72px);
+  }
+
+  .hero-photo {
+    position: absolute;
+    top: 50%;
+    width: clamp(110px, 13vw, 230px);
+    height: clamp(142px, 17vw, 300px);
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  /* Inner edges tuck slightly under the sign */
+  .hero-photo-1 {
+    right: calc(100% - var(--hero-photo-overlap));
+    transform: translateY(-50%) rotate(-11deg);
+  }
+
+  .hero-photo-2 {
+    left: calc(100% - var(--hero-photo-overlap));
+    transform: translateY(-50%) rotate(11deg);
+  }
+
+  .hero-photo-1:hover {
+    transform: translateY(-50%) rotate(-15deg);
+  }
+
+  .hero-photo-2:hover {
+    transform: translateY(-50%) rotate(15deg);
+  }
+
   .flipboard-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 18px;
-    /* perspective for 3D flaps */
     perspective: 600px;
     perspective-origin: center center;
   }
@@ -279,22 +331,31 @@
     z-index: 100;
     background: var(--bg);
     border-bottom: 1px solid var(--border);
-    transition: transform 0.35s ease, opacity 0.35s ease;
-    transform: translateY(-100%);
-    opacity: 0;
+    transform: translateY(0);
+    opacity: 1;
   }
-  .navbar.visible { transform: translateY(0); opacity: 1; }
-  .navbar.hidden  { transform: translateY(-100%); opacity: 0; }
-  
+
+  body.page-body {
+    padding-top: 49px;
+  }
+
+  body.landing #hero {
+    padding-top: 49px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
   .nav-inner {
-    max-width: 900px;
+    max-width: none;
+    width: 100%;
     margin: 0 auto;
-    padding: 12px 24px;
+    padding: 12px clamp(20px, 4vw, 48px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
   }
-  
+
   .nav-logo {
     font-family: var(--font);
     font-size: 13px;
@@ -302,6 +363,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--dark);
+    text-decoration: none;
   }
   
   .nav-links { display: flex; gap: 32px; }
@@ -320,6 +382,56 @@
   }
   .nav-link:hover,
   .nav-link.active { color: var(--dark); border-bottom-color: var(--teal); }
+
+  .nav-hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 640px) {
+    .nav-hamburger { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 4px 0;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-links.open { display: flex; }
+
+    .nav-link {
+      padding: 12px 24px;
+      border-bottom: none;
+    }
+  }
   
   /* ===========================
      SECTIONS
@@ -330,81 +442,136 @@
     padding: 60px 24px;
   }
   
-  .section-card {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-    border: 1px solid var(--border);
-  }
-  
   .section-header {
-    background: var(--teal);
-    padding: 14px 24px;
+    background: none;
+    padding: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+    margin-bottom: 36px;
   }
+
   .section-header h2 {
     font-family: var(--font);
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: white;
+    color: var(--teal);
+  }
+
+  #work .section-header h2 {
+    font-size: 26px;
+    letter-spacing: 0.14em;
+  }
+
+  @media (min-width: 1024px) {
+    #work,
+    #side-quests {
+      max-width: none;
+      width: 100%;
+      min-height: 100vh;
+      padding: 72px clamp(48px, 6vw, 120px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    #about {
+      max-width: none;
+      width: 100%;
+      padding: 64px clamp(48px, 6vw, 120px) 72px;
+      box-sizing: border-box;
+    }
+
+    #work .project-grid,
+    #side-quests .project-grid {
+      gap: 48px 40px;
+    }
+  }
+
+  #about .section-header h2 {
+    font-size: 26px;
+    letter-spacing: 0.14em;
   }
   .header-icon { font-size: 18px; }
   
   /* ===========================
      ABOUT
   =========================== */
-  .about-body {
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+
+  .about-main {
+    min-width: 0;
+  }
+
+  .about-side {
     display: flex;
     flex-direction: column;
+    gap: 28px;
+    width: clamp(260px, 28vw, 400px);
+    flex-shrink: 0;
   }
-  .about-top-row {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 32px;
-    align-items: start;
-    padding: 20px 28px 24px;
+
+  .about-portrait-wrap {
+    width: 100%;
   }
-  .about-portrait-wrap { flex-shrink: 0; }
+
   .about-portrait {
-    width: 180px;
-    height: 180px;
-    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
     object-fit: cover;
     object-position: center 35%;
     border: 3px solid var(--teal-light);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     display: block;
+    box-sizing: border-box;
   }
+
   .about-info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 40px;
-    align-content: start;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin: 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
   }
-  .about-divider-h { height: 1px; background: var(--border); margin: 0 28px; }
-  .about-blurb { padding: 24px 28px 28px; }
+
+  .about-info-grid .info-row {
+    flex: none;
+    width: 100%;
+  }
+
+  .about-blurb { padding: 0; }
 
   .about-blurb h3 {
     font-family: var(--font);
-    font-size: 28px;
+    font-size: clamp(32px, 4vw, 48px);
     font-weight: 300;
-    line-height: 1.4;
-    margin-bottom: 16px;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    color: var(--dark);
   }
-  .about-blurb h3 strong { font-weight: 500; }
+  .about-blurb h3 strong { font-weight: 600; }
 
   .about-blurb p {
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.75;
     color: var(--mid);
     margin-bottom: 14px;
+    max-width: 52ch;
+  }
+
+  .about-blurb p:last-of-type {
+    margin-bottom: 20px;
   }
   
   .see-resume {
@@ -437,51 +604,97 @@
   }
   
   /* ===========================
-     WORK — VERTICAL TRANSIT TIMELINE
+     PROJECT GRID (Featured Work & Side Quests)
   =========================== */
-  .work-card { overflow: visible; }
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 28px;
+    padding-bottom: 32px;
+  }
 
-  /* Legend */
-  .timeline-legend {
-    display: flex;
-    gap: 32px;
-    padding: 20px 28px 0;
-    flex-wrap: wrap;
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
-  .legend-label {
+
+  .project-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #e0e0da;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 18px;
+    background: linear-gradient(to top, rgba(26, 26, 26, 0.72) 0%, rgba(26, 26, 26, 0.08) 55%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  .project-card:hover .project-thumb {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
+    transform: translateY(-2px);
+  }
+
+  .project-card:hover .project-thumb img {
+    transform: scale(1.03);
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-title {
     font-family: var(--font);
-    font-size: 9px;
+    font-size: 18px;
     font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 10px;
+    color: white;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
   }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+
+  .project-tag {
+    display: inline-block;
     font-family: var(--font);
     font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.07em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--mid);
+    color: var(--dark);
+    background: var(--bg);
+    padding: 6px 14px;
+    border-radius: 6px 6px 6px 2px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   }
-  .legend-line {
-    display: inline-block;
-    width: 28px;
-    height: 5px;
-    border-radius: 3px;
-  }
-  .red-legend    { background: var(--red); }
-  .orange-legend { background: var(--orange); }
-  .blue-legend   { background: var(--blue); opacity: 0.5; }
-  .green-legend  { background: #00A651; opacity: 0.5; }
+
+  /* ===========================
+     WORK — VERTICAL TRANSIT TIMELINE (legacy)
+  =========================== */
 
   /* Timeline outer container */
   .timeline-section {
-    padding: 28px 0 32px;
+    padding: 0 0 32px;
     position: relative;
   }
 
@@ -944,8 +1157,32 @@
      LED DOT-MATRIX TICKER
   =========================== */
 
-  /* Pull the ticker flush under the about card so poles bridge the gap */
-  #about { padding-bottom: 0; }
+  .led-ticker-top {
+    padding-top: 24px;
+  }
+
+  .led-ticker-top + #work {
+    padding-top: 0;
+  }
+
+  #about.page-body-section,
+  body.page-body #about {
+    max-width: none;
+    width: 100%;
+    padding: 32px clamp(20px, 4vw, 48px) 56px;
+    box-sizing: border-box;
+  }
+
+  body.page-body #about .section-header {
+    margin-bottom: 32px;
+  }
+
+  .side-quests-intro {
+    padding: 0 0 28px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
 
   .led-ticker-outer {
     max-width: 900px;
@@ -1111,11 +1348,17 @@
   #flip-tagline-3 { display: none; }
   #flip-name-2    { display: none; }
 
-  /* ── Medium screens (641px–900px): 2-line web layout with zoom to fit ──
-     "NOT JUST THE DESTINATION" is ~829px wide at 1×.
-     zoom 0.72 → ~597px, fits inside 641px − 48px padding = 593px (±2px). */
+  /* ── Medium screens (641px–900px): scale composition to fit viewport ── */
   @media (min-width: 641px) and (max-width: 900px) {
-    .flipboard-wrapper { zoom: 0.72; }
+    .hero-composition {
+      zoom: 0.72;
+      --hero-photo-overlap: clamp(28px, 4vw, 48px);
+    }
+  }
+
+  /* ── Large-but-tight desktops ── */
+  @media (min-width: 901px) and (max-width: 1280px) {
+    .hero-composition { zoom: 0.82; }
   }
 
   /* ── Tablet / Large phone (≤640px) ── */
@@ -1125,7 +1368,48 @@
 
     /* Mobile layout: widest row is "THE DESTINATION" at ~547px.
        zoom 0.88 → ~481px, comfortably inside 640px - 32px = 608px available. */
-    .flipboard-wrapper { zoom: 0.88; }
+    /* Hero: photos above sign so they stay on screen */
+    .hero-composition {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px 28px;
+      justify-items: center;
+      width: 100%;
+      zoom: 1;
+    }
+
+    .hero-photo {
+      position: static;
+      width: clamp(90px, 28vw, 120px);
+      height: clamp(116px, 36vw, 155px);
+    }
+
+    .hero-photo-1 {
+      grid-column: 1;
+      grid-row: 1;
+      transform: rotate(-8deg);
+    }
+
+    .hero-photo-2 {
+      grid-column: 2;
+      grid-row: 1;
+      transform: rotate(8deg);
+    }
+
+    .hero-photo-1:hover {
+      transform: rotate(-12deg);
+    }
+
+    .hero-photo-2:hover {
+      transform: rotate(12deg);
+    }
+
+    .flipboard-wrapper {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      zoom: 0.88;
+    }
 
     /* Show mobile-only flipboard rows */
     #flip-tagline-3 { display: flex; }
@@ -1136,21 +1420,117 @@
 
     /* Navbar */
     .nav-inner { padding: 10px 16px; }
-    .nav-links  { gap: 20px; }
+
+    .section-header {
+      padding: 0;
+      margin-bottom: 28px;
+    }
+
+    .section-header h2 {
+      font-size: 16px;
+    }
+
+    #work .section-header h2,
+    #about .section-header h2 {
+      font-size: 20px;
+      letter-spacing: 0.12em;
+    }
+
+    /* Project grid: single column on mobile */
+    #work,
+    #side-quests {
+      max-width: none;
+      width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .project-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+      padding-bottom: 16px;
+    }
+
+    .project-title {
+      font-size: 15px;
+    }
+
+    .project-tag {
+      font-size: 9px;
+      padding: 5px 10px;
+    }
+
+    .project-overlay {
+      padding: 14px;
+    }
 
     /* About: stack on small screens */
-    .about-top-row { grid-template-columns: 1fr; padding: 16px 20px 20px; }
-    .about-portrait { width: 100%; height: auto; aspect-ratio: 1 / 1; }
-    .about-info-grid { grid-template-columns: 1fr; }
-    .about-divider-h { margin: 0 20px; }
-    .about-blurb { padding: 20px 20px 24px; }
+    body.page-body #about {
+      padding: 20px 16px 40px;
+      overflow-x: hidden;
+    }
+
+    body.page-body #about .section-header {
+      margin-bottom: 20px;
+    }
+
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .about-main {
+      order: 2;
+      width: 100%;
+    }
+
+    .about-side {
+      order: 1;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      gap: 20px;
+    }
+
+    .about-portrait {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .about-info-grid {
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    .about-info-grid .info-row span:last-child {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .about-blurb h3 {
+      font-size: clamp(24px, 7vw, 28px);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .about-blurb p {
+      max-width: none;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .about-blurb p:last-of-type {
+      margin-bottom: 16px;
+    }
 
     /* Work: hide purely decorative bg lines / ghost stops */
     .timeline-bg-svg,
     .bg-stop { display: none; }
 
     /* Timeline group padding */
-    .timeline-legend { padding: 16px 16px 0; }
     .timeline-group  { padding: 0 16px; }
     #orange-line-group { margin-top: 40px !important; }
 
@@ -1232,8 +1612,35 @@
     /* New mobile layout widest row is ~547px.
        zoom 0.80 → ~438px, fits inside 480px - 32px = 448px available. */
     .flipboard-wrapper { zoom: 0.80; }
-    .about-blurb h3 { font-size: 22px; }
-    .nav-links { gap: 16px; }
+
+    body.page-body #about {
+      padding: 16px 16px 32px;
+    }
+
+    body.page-body #about .section-header {
+      margin-bottom: 16px;
+    }
+
+    .about-layout {
+      gap: 20px;
+    }
+
+    .about-side {
+      gap: 16px;
+    }
+
+    .about-blurb h3 {
+      font-size: 22px;
+    }
+
+    .about-blurb p {
+      font-size: 13px;
+    }
+
+    .about-info-grid {
+      gap: 14px;
+      padding-top: 14px;
+    }
   }
 
   /* ── Small phone (≤390px) ── */
